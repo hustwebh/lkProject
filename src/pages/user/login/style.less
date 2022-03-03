@@ -1,0 +1,47 @@
+
+.loginDiv {
+  width: 400px;
+  height: 300px;
+  padding: 10px 10px;
+  padding-top: 180px;
+  animation: down 1.2s;
+  margin: 0 auto;
+  -webkit-animation: down 1.2s; /* Safari 与 Chrome */
+  -moz-animation: down 1.2s; /*  Firefox */
+}
+
+@keyframes down {
+  from {
+    padding-top: 10px;
+  }
+  to {
+    padding-top: 180px;
+  }
+}
+
+@-webkit-keyframes down /* Safari 与 Chrome */ {
+  from {
+    padding-top: 10px;
+  }
+  to {
+    padding-top: 180px;
+  }
+}
+
+@-moz-keyframes down {
+  from {
+    padding-top: 10px;
+  }
+  to {
+    padding-top: 180px;
+  }
+}
+
+.linkto {
+  color: black;
+  transition: 0.5s;
+}
+
+.linkto:hover {
+  color: #3498db;
+}
