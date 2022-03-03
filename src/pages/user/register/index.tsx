@@ -31,21 +31,34 @@ const Index = (props: any) => {
   };
 
   const Login = () => {
+    const [value, setValue] = React.useState(1);
+    const [verification, setVerification] = React.useState(true);
+
+    const isAdministrator = (e: any) => {
+      setValue(e.target.value);
+      if (e.target.value === 3) {
+        setVerification(false);
+      }else{
+        setVerification(true);
+      }
+    }
+
     const onFinish = (values: any) => {
-      // console.log("hahah!")
+      if(!values.aministrator) values.aministrator = '';
+      // console.log("values", values);
       dispatch({
         type: 'register/register',
-        payload: { ...values, type: 100 },
+        payload: { ...values },
       }).then((res: any) => {
         if (res) {
-          history.push('/user/login');
+          history.push('/user/register');
         } else {
           message.error('注册失败, 检查邮箱或用户名是否重复！');
         }
       });
     };
 
-    const onFinishFailed = (errorInfo:any) => {
+    const onFinishFailed = (errorInfo: any) => {
       console.log('Failed:', errorInfo);
     };
 
@@ -88,31 +101,31 @@ const Index = (props: any) => {
         </Form.Item>
 
         <Form.Item
-        label="身份证号"
-        name="id_card"
-        rules={[
-          {
-            required: true,
-            message: '请输入身份证号!',
-          },
-          {
-            pattern:/^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
-            message: '请输入正确的格式!',
-          },
-        ]}
+          label="身份证号"
+          name="id_card"
+          rules={[
+            // {
+            //   required: true,
+            //   message: '请输入身份证号!',
+            // },
+            // {
+            //   pattern:/^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
+            //   message: '请输入正确的格式!',
+            // },
+          ]}
         >
           <Input size="large" className={style.id_card} autoComplete="off" />
         </Form.Item>
 
         <Form.Item
-        label="所属医院"
-        name="hospital"
-        rules={[
-          {
-            required: true,
-            message: '请输入工作单位!',
-          },
-        ]}
+          label="所属医院"
+          name="hospital"
+          rules={[
+            {
+              required: true,
+              message: '请输入工作单位!',
+            },
+          ]}
         >
           <Input size="large" className={style.hospital} autoComplete="off" />
         </Form.Item>
@@ -169,14 +182,27 @@ const Index = (props: any) => {
             },
           ]}
         >
-          <Radio.Group value={2}>
-            <Radio value={2}>医生</Radio>
-            <Radio value={3}>护士</Radio>
-            <Radio value={4}>管理员</Radio>
+          <Radio.Group value={value} onChange={isAdministrator}>
+            <Radio value={1}>医生</Radio>
+            <Radio value={2}>护士</Radio>
+            <Radio value={3}>管理员</Radio>
           </Radio.Group>
         </Form.Item>
 
-        <Form.Item {...tailLayout} name="back">
+        <Form.Item
+          label="校验码"
+          name="aministrator"
+          style={{ color: 'balck' }}
+        >
+          <Input.Password
+          size="large"
+          className={style.aministrator}
+          disabled={verification}
+          placeholder={`只需管理员身份申请时填写`}
+          />
+        </Form.Item>
+
+        <Form.Item {...tailLayout}>
           <Link to="/user/login">
             <span className={style.back}>已有账号，点此登录...</span>
           </Link>
