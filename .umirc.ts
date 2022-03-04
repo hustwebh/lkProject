@@ -1,4 +1,8 @@
 import { defineConfig } from 'umi';
+import proxy from './proxy';
+
+
+const { REACT_APP_ENV } = process.env;
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -8,4 +12,5 @@ export default defineConfig({
   //   { path: '/', component: '@/pages/index' },
   // ],
   fastRefresh: {},
+  // proxy: proxy[REACT_APP_ENV || 'dev'],
 });

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Input, Space, Form, Button, Checkbox, message, Radio } from 'antd';
+import { Input, Space, Form, Button, Checkbox, message, Radio, Select } from 'antd';
 import { Link, history } from 'umi';
 import style from './style.less';
 import logo from '../../../assets/favicon.png';
@@ -7,6 +7,7 @@ import { connect } from 'dva';
 
 const Index = (props: any) => {
   const { dispatch } = props;
+  const { Option } = Select;
 
   const layout = {
     labelCol: {
@@ -38,13 +39,13 @@ const Index = (props: any) => {
       setValue(e.target.value);
       if (e.target.value === 3) {
         setVerification(false);
-      }else{
+      } else {
         setVerification(true);
       }
     }
 
     const onFinish = (values: any) => {
-      if(!values.aministrator) values.aministrator = '';
+      if (!values.aministrator) values.aministrator = '';
       // console.log("values", values);
       dispatch({
         type: 'register/register',
@@ -84,6 +85,36 @@ const Index = (props: any) => {
         </Form.Item>
 
         <Form.Item
+          label="性别"
+          name="gender"
+          style={{ marginBottom: 0 }}
+          rules={[
+            {
+              required: true,
+              message: '请选择用户性别!',
+            },
+          ]}
+        >
+          <Radio.Group>
+            <Radio value='男'>男</Radio>
+            <Radio value='女'>女</Radio>
+          </Radio.Group>
+        </Form.Item>
+
+        <Form.Item
+          label="电话"
+          name="phone"
+          rules={[
+            {
+              required: true,
+              message: '请输入联系电话!',
+            },
+          ]}
+        >
+          <Input size="large" className={style.email} autoComplete="off" />
+        </Form.Item>
+
+        <Form.Item
           label="邮箱"
           name="email"
           rules={[
@@ -104,14 +135,14 @@ const Index = (props: any) => {
           label="身份证号"
           name="id_card"
           rules={[
-            // {
-            //   required: true,
-            //   message: '请输入身份证号!',
-            // },
-            // {
-            //   pattern:/^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
-            //   message: '请输入正确的格式!',
-            // },
+            {
+              required: true,
+              message: '请输入身份证号!',
+            },
+            {
+              pattern: /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
+              message: '请输入正确的格式!',
+            },
           ]}
         >
           <Input size="large" className={style.id_card} autoComplete="off" />
@@ -119,7 +150,7 @@ const Index = (props: any) => {
 
         <Form.Item
           label="所属医院"
-          name="hospital"
+          name="hospital_id"
           rules={[
             {
               required: true,
@@ -127,7 +158,12 @@ const Index = (props: any) => {
             },
           ]}
         >
-          <Input size="large" className={style.hospital} autoComplete="off" />
+          {/* <Input size="large" className={style.hospital} autoComplete="off" /> */}
+          <Select style={{ width:307 }} >
+            <Option value={1}>湖北省第三人民医院</Option>
+            <Option value={2}>武汉市第一人民医院</Option>
+            <Option value={3}>武汉市妇幼保健院</Option>
+          </Select>
         </Form.Item>
 
         <Form.Item
@@ -182,10 +218,10 @@ const Index = (props: any) => {
             },
           ]}
         >
-          <Radio.Group value={value} onChange={isAdministrator}>
-            <Radio value={1}>医生</Radio>
-            <Radio value={2}>护士</Radio>
-            <Radio value={3}>管理员</Radio>
+          <Radio.Group onChange={isAdministrator}>
+            <Radio value='医生'>医生</Radio>
+            <Radio value='护士'>护士</Radio>
+            <Radio value='管理员'>管理员</Radio>
           </Radio.Group>
         </Form.Item>
 
@@ -195,10 +231,10 @@ const Index = (props: any) => {
           style={{ color: 'balck' }}
         >
           <Input.Password
-          size="large"
-          className={style.aministrator}
-          disabled={verification}
-          placeholder={`只需管理员身份申请时填写`}
+            size="large"
+            className={style.aministrator}
+            disabled={verification}
+            placeholder={`只需管理员身份申请时填写`}
           />
         </Form.Item>
 

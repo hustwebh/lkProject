@@ -1,5 +1,5 @@
 import { Login } from './service';
-import CookieUtil from '@/utils/cookie.js';
+// import CookieUtil from '@/utils/cookie.js';
 import { message } from 'antd';
 
 const Model = {
@@ -27,16 +27,16 @@ const Model = {
         const { token, role } = data;
         // token 过期时间24小时
         let expires;
-        if (payload.remember) {
-          expires = new Date(+new Date() + 7 * 24 * 60 * 60 * 1000);
-          console.log('失效日期：', expires);
-        } else {
-          expires = new Date(+new Date() + 24 * 60 * 60 * 1000);
-          console.log('失效日期：', expires);
-        }
+        // if (payload.remember) {
+        //   expires = new Date(+new Date() + 7 * 24 * 60 * 60 * 1000);
+        //   console.log('失效日期：', expires);
+        // } else {
+        //   expires = new Date(+new Date() + 24 * 60 * 60 * 1000);
+        //   console.log('失效日期：', expires);
+        // }
 
-        CookieUtil.set('token', token, expires, '/');
-        CookieUtil.set('role', role, expires, '/');
+        // CookieUtil.set('token', token, expires, '/');
+        // CookieUtil.set('role', role, expires, '/');
         // CookieUtil.set('userInfo', JSON.stringify(userInfo), new Date(+new Date() + 24 * 60 * 60 * 1000))
         message.success('登录成功！');
         return true;
