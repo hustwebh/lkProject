@@ -52,7 +52,7 @@ const Index = (props: any) => {
         payload: { ...values },
       }).then((res: any) => {
         if (res) {
-          history.push('/user/register');
+          history.push('/');
         } else {
           message.error('注册失败, 检查邮箱或用户名是否重复！');
         }
@@ -72,12 +72,25 @@ const Index = (props: any) => {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="姓名"
+          label="真实姓名"
           name="name"
           rules={[
             {
               required: true,
               message: '请输入姓名!',
+            },
+          ]}
+        >
+          <Input size="large" className={style.user} autoComplete="off" />
+        </Form.Item>
+
+        <Form.Item
+          label="用户名"
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: '请输入用户名!',
             },
           ]}
         >
@@ -219,9 +232,9 @@ const Index = (props: any) => {
           ]}
         >
           <Radio.Group onChange={isAdministrator}>
-            <Radio value='医生'>医生</Radio>
-            <Radio value='护士'>护士</Radio>
-            <Radio value='管理员'>管理员</Radio>
+            <Radio value={1}>医生</Radio>
+            <Radio value={2}>护士</Radio>
+            <Radio value={3}>管理员</Radio>
           </Radio.Group>
         </Form.Item>
 

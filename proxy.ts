@@ -1,20 +1,51 @@
-import { SERVICEURL } from './src/utils/const';
+// import { SERVICEURL } from './src/utils/const';
 export default {
   dev: {
-    '/sea': {
-      target: `${SERVICEURL}/api`,
+    '/rbac': {
+      target: 'rbac url',
       changeOrigin: true,
       pathRewrite: {
-        '^/sea': '',
+        '^/rbac': '',
       },
     },
     '/api': {
-      target: SERVICEURL,
+      target: 'http://127.0.0.1:4523',
       changeOrigin: true,
       pathRewrite: {
         '^/api': '',
       },
-      secure: false, //umi代理https时应该设置secure属性
+    },
+
+    '/git': {
+      target: 'https://github.com',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/git': '',
+      },
+    },
+
+    '/orthanc': {
+      target: 'http://27.17.30.150:20083',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/orthanc': '',
+      },
+    },
+
+    '/web-viewer': {
+      target: 'http://27.17.30.150:20083/web-viewer',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/web-viewer': '',
+      },
+    },
+
+    '/detect': {
+      target: 'http://120.24.40.160',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/detect': '',
+      },
     },
   },
   test: {
