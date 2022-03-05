@@ -110,7 +110,7 @@ const Index = (props: any) => {
             ></Form.Item>
           </Col>
           <Col span={8} style={{ display: 'flex', alignItems: 'center' }}>
-            <Link to="/register">
+            <Link to="/user/register">
               <span className={style.linkto} style={{ marginLeft: 48 }}>
                 注册账户
               </span>

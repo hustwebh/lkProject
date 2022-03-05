@@ -7,30 +7,38 @@
 export default [
   {
     path: '/',
-    redirect: '/login',
+    redirect: '/user/login',
   },
   {
-    path: '/login',
-    component: '../pages/user/login/index',
+    path: '/user/login',
+    // component: '../pages/user/login/index',
+    component: '@/layouts/index',
     routes: [
       {
-        path: '/main',
-        component: '../pages/main/index',
+        path: '/user/login',
+        component: '../pages/user/login/index',
       },
     ],
   },
   {
-    path: '/register',
-    component: '../pages/user/register/index',
+    path: '/user/register',
+    // component: '../pages/user/register/index',
+    component: '@/layouts/index',
     routes: [
       {
-        path: '/main',
-        component: '../pages/main/index',
+        path: '/user/register',
+        component: '../pages/user/register/index',
       },
     ],
   },
   {
     path: '/main',
-    component: '../pages/main/index',
+    component: '@/layouts/index',
+    routes: [
+      {
+        path: '/main',
+        component: '../pages/main/index',
+      },
+    ],
   },
 ];
