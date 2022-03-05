@@ -4,16 +4,16 @@ import logo from '../assets/logo.svg';
 import styles from './UserLayouts.less';
 import back from '../../assets/back.png';
 
-const UserLayout = (props:any) => {
+const UserLayout = (props: any) => {
   return (
     <div
       style={{ width: '100%', height: '100%' }}
       className={styles.background}
     >
-      <img
+      {/* <img
         style={{ width: '100%', height: '100%', objectFit: 'fill', zIndex: -1 }}
         src={back}
-      />
+      /> */}
       <div
         style={{
           position: 'absolute',

@@ -93,7 +93,7 @@ const Index = (props: any) => {
           <Input size="large" className={style.user} autoComplete="off" />
         </Form.Item>
 
-        <Form.Item
+        {/* <Form.Item
           label="用户名"
           name="username"
           rules={[
@@ -104,7 +104,7 @@ const Index = (props: any) => {
           ]}
         >
           <Input size="large" className={style.user} autoComplete="off" />
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item
           label="性别"
@@ -182,7 +182,7 @@ const Index = (props: any) => {
           ]}
         >
           {/* <Input size="large" className={style.hospital} autoComplete="off" /> */}
-          <Select style={{ width: 307 }}>
+          <Select style={{ width: 307 }} value={1}>
             <Option value={1}>湖北省第三人民医院</Option>
             <Option value={2}>武汉市第一人民医院</Option>
             <Option value={3}>武汉市妇幼保健院</Option>
