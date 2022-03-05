@@ -46,6 +46,7 @@ import {
 } from '@ant-design/icons';
 import topLogo from '@/assets/favicon.png';
 import moment from 'moment';
+import PeopleMsg from "@/components/SiderMsg";
 import { SERVICEURL } from '@/utils/const';
 
 const { Header, Sider, Footer, Content } = Layout;
@@ -502,7 +503,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
         <Layout style={{ backgroundColor: '#343434' }}>
           <Sider className="side" width={350}>
-            左侧工具栏
+          <PeopleMsg />
           </Sider>
           <Content className="main-content">{props.children}</Content>
         </Layout>

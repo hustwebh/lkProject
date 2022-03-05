@@ -6,7 +6,10 @@ interface mainContentProps {
 }
 
 const MainContent: React.FC<mainContentProps> = (props) => {
-  return <div className={style.rightContent}>各个菜单界面</div>;
+  return (
+    <div className={style.rightContent}>
+      各个菜单界面
+    </div>);
 };
 
 const mapStateToProps = ({ mainPage }: { mainPage: any }) => {
