@@ -20,6 +20,16 @@ export default [
     ],
   },
   {
+    path: '/register',
+    component: '../pages/user/register/index',
+    routes: [
+      {
+        path: '/main',
+        component: '../pages/main/index',
+      },
+    ],
+  },
+  {
     path: '/main',
     component: '../pages/main/index',
   },

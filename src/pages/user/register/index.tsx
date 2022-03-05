@@ -54,8 +54,8 @@ const Index = (props: any) => {
     };
 
     const onFinish = (values: any) => {
-      if (!values.aministrator) values.aministrator = '';
-      // console.log("values", values);
+      history.push('/main');
+      /* if (!values.aministrator) values.aministrator = '';
       dispatch({
         type: 'register/register',
         payload: { ...values },
@@ -65,7 +65,7 @@ const Index = (props: any) => {
         } else {
           message.error('注册失败, 检查邮箱或用户名是否重复！');
         }
-      });
+      }); */
     };
 
     const onFinishFailed = (errorInfo: any) => {
