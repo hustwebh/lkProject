@@ -1,5 +1,14 @@
 import React, { useEffect } from 'react';
-import { Input, Space, Form, Button, Checkbox, message, Radio, Select } from 'antd';
+import {
+  Input,
+  Space,
+  Form,
+  Button,
+  Checkbox,
+  message,
+  Radio,
+  Select,
+} from 'antd';
 import { Link, history } from 'umi';
 import style from './style.less';
 import logo from '../../../assets/favicon.png';
@@ -42,7 +51,7 @@ const Index = (props: any) => {
       } else {
         setVerification(true);
       }
-    }
+    };
 
     const onFinish = (values: any) => {
       if (!values.aministrator) values.aministrator = '';
@@ -52,7 +61,7 @@ const Index = (props: any) => {
         payload: { ...values },
       }).then((res: any) => {
         if (res) {
-          history.push('/');
+          history.push('/main');
         } else {
           message.error('注册失败, 检查邮箱或用户名是否重复！');
         }
@@ -109,8 +118,8 @@ const Index = (props: any) => {
           ]}
         >
           <Radio.Group>
-            <Radio value='男'>男</Radio>
-            <Radio value='女'>女</Radio>
+            <Radio value="男">男</Radio>
+            <Radio value="女">女</Radio>
           </Radio.Group>
         </Form.Item>
 
@@ -153,7 +162,8 @@ const Index = (props: any) => {
               message: '请输入身份证号!',
             },
             {
-              pattern: /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
+              pattern:
+                /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
               message: '请输入正确的格式!',
             },
           ]}
@@ -172,7 +182,7 @@ const Index = (props: any) => {
           ]}
         >
           {/* <Input size="large" className={style.hospital} autoComplete="off" /> */}
-          <Select style={{ width:307 }} >
+          <Select style={{ width: 307 }}>
             <Option value={1}>湖北省第三人民医院</Option>
             <Option value={2}>武汉市第一人民医院</Option>
             <Option value={3}>武汉市妇幼保健院</Option>

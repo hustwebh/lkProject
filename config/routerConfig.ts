@@ -12,5 +12,15 @@ export default [
   {
     path: '/login',
     component: '../pages/user/login/index',
+    routes: [
+      {
+        path: '/main',
+        component: '../pages/main/index',
+      },
+    ],
+  },
+  {
+    path: '/main',
+    component: '../pages/main/index',
   },
 ];
