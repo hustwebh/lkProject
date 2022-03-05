@@ -1,5 +1,5 @@
 .side {
-  background-color: #292929;
+  background-color: #3f475a;
   left: 0;
   height: calc(100vh - 64px);
   /* overflow: outo; */
@@ -7,7 +7,7 @@
 }
 
 .main-content {
-  background-color: #343434;
+  background-color: white;
   height: calc(100vh - 64px);
   overflow-y: auto;
 }
@@ -37,7 +37,7 @@
   width: 160px;
   height: 31px;
   margin: 16px 8px 16px 0px;
-  background: #2d2d2d;
+  background: #f0f0f0;
   line-height: 31px;
   text-align: center;
   color: #f56a00;

@@ -69,7 +69,10 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
     // soundListLoading,
     // searchListLoading,
     location,
+    uuid, // 在登录的时候获取
   } = props;
+
+  const tmpuuid = 'bfd34afd-f97a9f7c-c0551428-93a0c48a-0285c8ce';
 
   // useEffect(() => {
   //   dispatch({
@@ -232,38 +235,40 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
     const { SubMenu } = Menu;
     const handleClick = (e: any) => {
       console.log(e);
-    }
+    };
 
     return (
       <Menu
         onClick={handleClick}
         defaultSelectedKeys={[props.location.pathname]}
         mode="horizontal"
-        style={{ backgroundColor: '#2D2D2D', float: 'left' }}
+        style={{ backgroundColor: '#f0f0f0', float: 'left' }}
       >
         <Menu.Item key="/main" icon={<HomeOutlined />}>
           <Link to="/main">主页</Link>
         </Menu.Item>
-          <SubMenu key="SubMenu" title="信息录入">
-            <Menu.Item key="/basicInfo">
-              <Link to="/basicInfo">基本信息录入</Link>
-            </Menu.Item>
-            <Menu.Item key="/doctorInfo">
-              <Link to="/doctorInfo">诊疗信息录入</Link>
-              </Menu.Item>
-            <Menu.Item key="/CTInfo">
-              <Link to="/CTInfo">CT影像录入</Link>
-            </Menu.Item>
-          </SubMenu>
+        <SubMenu key="SubMenu" title="信息录入">
+          <Menu.Item key="/basicInfo">
+            <Link to="/basicInfo">基本信息录入</Link>
+          </Menu.Item>
+          <Menu.Item key="/doctorInfo">
+            <Link to="/doctorInfo">诊疗信息录入</Link>
+          </Menu.Item>
+          <Menu.Item key="/CTInfo">
+            <Link to="/CTInfo">CT影像录入</Link>
+          </Menu.Item>
+        </SubMenu>
         <Menu.Item key="/infoSearch" icon={<HomeOutlined />}>
           <Link to="/infoSearch">信息检索</Link>
         </Menu.Item>
         <Menu.Item key="/imgSplit" icon={<HomeOutlined />}>
-          <Link to="/imgSplit">肾脏图像分割</Link>
+          {/* uuid从props中获得，现在先用tmpuuid代替 */}
+          {/* <Link to={`/imgSplit?uuid=${uuid}`}>肾脏图像分割</Link> */}
+          <Link to={`/imgSplit?uuid=${tmpuuid}`}>肾脏图像分割</Link>
         </Menu.Item>
       </Menu>
     );
-  }
+  };
 
   // 更改密码modal框
   // const ChangePasswordModal = () => {
@@ -439,12 +444,8 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
   // 头像下拉菜单
   const menu = (
     <Menu>
-      <Menu.Item>
-        {/* <ChangeNicknameModal /> */}
-      </Menu.Item>
-      <Menu.Item>
-        {/* <ChangePasswordModal /> */}
-      </Menu.Item>
+      <Menu.Item>{/* <ChangeNicknameModal /> */}</Menu.Item>
+      <Menu.Item>{/* <ChangePasswordModal /> */}</Menu.Item>
       {/* <Menu.Item>
         <a
           onClick={() => {
@@ -461,7 +462,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
   return (
     <div>
       <Layout>
-        <Header style={{ backgroundColor: '#2D2D2D', zIndex: 999, height: 66 }}>
+        <Header style={{ backgroundColor: '#f0f0f0', zIndex: 999, height: 66 }}>
           <div className="logo">
             <img src={topLogo} alt="肾脏诊疗系统" style={{ width: 30 }} />
             <b>肾脏诊疗系统</b>
@@ -487,7 +488,8 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
                 }
               }
             >
-              <Link to="/staffManage">用户中心 </Link>|
+              {/* <Link to="/staffManage">用户中心 </Link>| */}
+              <Button>用户中心</Button>
             </span>
 
             {/* <span>{` 您好，${
@@ -519,9 +521,15 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
       </Layout>
     </div>
   );
-}
+};
 
-const mapStateToProps = ({ loading, soundList }: { loading: boolean, soundList: any }) => {
+const mapStateToProps = ({
+  loading,
+  soundList,
+}: {
+  loading: boolean;
+  soundList: any;
+}) => {
   // console.log(loading)
   return {
     // InforImport: inforImport,

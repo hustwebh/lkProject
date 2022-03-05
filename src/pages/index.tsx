@@ -1,3 +1,4 @@
+import { connect } from 'umi';
 import style from './index.less';
 
 interface mainContentProps {
