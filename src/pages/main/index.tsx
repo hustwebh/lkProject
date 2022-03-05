@@ -16,21 +16,7 @@ const Index = (props: any) => {
   const { dispatch } = props;
 
   return (
-    <div className={style.loginDiv}>
-      {/* <img src={logo} style={{ height: 45, width: 45, marginLeft: '10%' }} /> */}
-      <h2
-        style={{
-          marginLeft: '28%',
-          marginTop: -40,
-          marginBottom: 30,
-          width: '500px',
-          color: 'black',
-        }}
-      >
-        肾病辅助诊疗系统
-      </h2>
       <div>主界面</div>
-    </div>
   );
 };
 

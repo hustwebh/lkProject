@@ -6,6 +6,7 @@ import moment from 'moment';
 import topLogo from '@/assets/rayplus.png';
 // import bottomLogo from '@/assets/bottom-logo.png';
 import { SERVICEURL } from '@/utils/const';
+import Main from "@/pages/main";
 import {
   Layout,
 } from 'antd';
@@ -26,7 +27,7 @@ const BasicLayouts = () => {
           </div>
         </Header>
         <Layout style={{ backgroundColor: '#343434' }}>
-          main
+          <Main></Main>
         </Layout>
 
         <Footer

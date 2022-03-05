@@ -10,10 +10,10 @@ const UserLayout = (props:any) => {
       style={{ width: '100%', height: '100%' }}
       className={styles.background}
     >
-      <img
+      {/* <img
         style={{ width: '100%', height: '100%', objectFit: 'fill', zIndex: -1 }}
         src={back}
-      />
+      /> */}
       <div
         style={{
           position: 'absolute',
