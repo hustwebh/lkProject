@@ -44,7 +44,7 @@ import {
   UploadOutlined,
   EditOutlined,
 } from '@ant-design/icons';
-import topLogo from '@/assets/rayplus.png';
+import topLogo from '@/assets/favicon.png';
 import moment from 'moment';
 import { SERVICEURL } from '@/utils/const';
 
@@ -70,7 +70,6 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
     // searchListLoading,
     location,
   } = props;
-  console.log('reRender2');
 
   // useEffect(() => {
   //   dispatch({
@@ -111,7 +110,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
   //   });
   // }, [location]);
 
-  const [sumForm] = Form.useForm();
+  // const [sumForm] = Form.useForm();
   const [loading, setloading] = useState(false);
 
   // const InforDrawer = ({ id, visible, setvisible }:{id:number,visible:any,setvisible:any}) => {
@@ -240,24 +239,27 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
         onClick={handleClick}
         defaultSelectedKeys={[props.location.pathname]}
         mode="horizontal"
-        style={{ float: 'left' }}
+        style={{ backgroundColor: '#2D2D2D', float: 'left' }}
       >
+        <Menu.Item key="/main" icon={<HomeOutlined />}>
+          <Link to="/main">主页</Link>
+        </Menu.Item>
           <SubMenu key="SubMenu" title="信息录入">
-            <Menu.Item key="setting:1">
-              <Link to="/basicInfo-input">基本信息录入</Link>
+            <Menu.Item key="/basicInfo">
+              <Link to="/basicInfo">基本信息录入</Link>
             </Menu.Item>
-            <Menu.Item key="setting:2">
-              <Link to="/doctorInfo-input">诊疗信息录入</Link>
+            <Menu.Item key="/doctorInfo">
+              <Link to="/doctorInfo">诊疗信息录入</Link>
               </Menu.Item>
-            <Menu.Item key="setting:2">
-              <Link to="/CTInfo-input">CT影像录入</Link>
+            <Menu.Item key="/CTInfo">
+              <Link to="/CTInfo">CT影像录入</Link>
             </Menu.Item>
           </SubMenu>
-        <Menu.Item key="/info-search" icon={<HomeOutlined />}>
-          <Link to="/info-search">信息检索</Link>
+        <Menu.Item key="/infoSearch" icon={<HomeOutlined />}>
+          <Link to="/infoSearch">信息检索</Link>
         </Menu.Item>
-        <Menu.Item key="/img-split" icon={<HomeOutlined />}>
-          <Link to="/img-split">肾脏图像分割</Link>
+        <Menu.Item key="/imgSplit" icon={<HomeOutlined />}>
+          <Link to="/imgSplit">肾脏图像分割</Link>
         </Menu.Item>
       </Menu>
     );
@@ -461,7 +463,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
       <Layout>
         <Header style={{ backgroundColor: '#2D2D2D', zIndex: 999, height: 66 }}>
           <div className="logo">
-            <img src={topLogo} alt="水声系统" style={{ width: 60 }} />
+            <img src={topLogo} alt="肾脏诊疗系统" style={{ width: 30 }} />
             <b>肾脏诊疗系统</b>
           </div>
 
@@ -495,6 +497,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
             }`}</span> */}
           </div>
         </Header>
+
         <Layout style={{ backgroundColor: '#343434' }}>
           <Sider className="side" width={350}>
             左侧工具栏

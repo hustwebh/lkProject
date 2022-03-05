@@ -1,9 +1,17 @@
-import styles from './index.less';
+import style from './index.less';
 
-export default function IndexPage() {
-  return (
-    <div>
-      <h1 className={styles.title}>Page index</h1>
-    </div>
-  );
+interface mainContentProps {
+  MainPage: any;
 }
+
+const MainContent: React.FC<mainContentProps> = (props) => {
+  return <div className={style.rightContent}>各个菜单界面</div>;
+};
+
+const mapStateToProps = ({ mainPage }: { mainPage: any }) => {
+  return {
+    MainPage: mainPage,
+  };
+};
+
+export default connect(mapStateToProps)(MainContent);

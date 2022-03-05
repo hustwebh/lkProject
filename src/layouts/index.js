@@ -8,15 +8,16 @@ const index = (props) => {
   const { location } = props;
   const { pathname } = location;
 
-  console.log(pathname);
-
+console.log('xxxxxpathname',pathname)
   if (pathname.search('/user') == -1) {
+    console.log("pathname1",pathname);
     return (
       <ConfigProvider >
         <BasicLayouts {...props} />
       </ConfigProvider>
     );
   } else if (pathname.search('/user') != -1) {
+    console.log("pathname2",pathname);
     return (
       <ConfigProvider >
         <UserLayout {...props} />
