@@ -6,7 +6,7 @@
  */
 
 import { defineConfig } from 'umi';
-// import routerConfig from './routerConfig';
+import routerConfig from './routes';
 import proxy from './proxy';
 
 // process.env包含着关于系统环境的信息
@@ -28,7 +28,7 @@ export default defineConfig({
   history: { type: 'hash' }, // 使用hash路由
   hash: true,
   mock: false, //关闭mock
-  // routes: routerConfig, // 导入路由
+  routes: routerConfig, // 导入路由
   dynamicImport: {
     // 是否启用按需加载
     // loading: '@ant-design/pro-layout/es/PageLoading',
