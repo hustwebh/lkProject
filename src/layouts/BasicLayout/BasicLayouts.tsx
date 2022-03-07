@@ -46,7 +46,7 @@ import {
 } from '@ant-design/icons';
 import topLogo from '@/assets/favicon.png';
 import moment from 'moment';
-import PeopleMsg from "@/components/SiderMsg";
+import PeopleMsg from '@/components/SiderMsg';
 import { SERVICEURL } from '@/utils/const';
 
 const { Header, Sider, Footer, Content } = Layout;
@@ -245,8 +245,8 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
         mode="horizontal"
         style={{ backgroundColor: '#f0f0f0', float: 'left' }}
       >
-        <Menu.Item key="/main" icon={<HomeOutlined />}>
-          <Link to="/main">主页</Link>
+        <Menu.Item key="/" icon={<HomeOutlined />}>
+          <Link to="/">主页</Link>
         </Menu.Item>
         <SubMenu key="SubMenu" title="信息录入">
           <Menu.Item key="/basicInfo">
@@ -503,7 +503,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
         <Layout style={{ backgroundColor: '#343434' }}>
           <Sider className="side" width={350}>
-          <PeopleMsg />
+            <PeopleMsg />
           </Sider>
           <Content className="main-content">{props.children}</Content>
         </Layout>

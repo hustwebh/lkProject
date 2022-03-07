@@ -5,7 +5,7 @@
  */
 import type { Reducer, Effect } from 'umi';
 import { message } from 'antd';
-import { services } from '@/extension/orthanc';
+import { services } from '@/extension/Orthanc/services/index';
 import { headerKey, mainTagKey } from './mainTag';
 
 export type StateType = {

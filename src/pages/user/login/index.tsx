@@ -34,19 +34,17 @@ const Index = (props: any) => {
   const Login = () => {
     const onFinish = (values: any) => {
       console.log(values);
-      history.push('/main');
-
-      /* dispatch({
-      type: 'login/login',
-      payload: values,
-    }).then((res: any) => {
-      console.log(res);
-      if (res) {
-        history.push('/main');
-      } else {
-        message.error('登录失败！');
-      }
-    }); */
+      dispatch({
+        type: 'login/login',
+        payload: values,
+      }).then((res: any) => {
+        console.log(res);
+        if (res) {
+          history.push('/');
+        } else {
+          message.error('登录失败！');
+        }
+      });
     };
 
     const onFinishFailed = (errorInfo: any) => {
