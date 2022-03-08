@@ -54,14 +54,13 @@ const Index = (props: any) => {
     };
 
     const onFinish = (values: any) => {
-      history.push('/main');
       if (!values.aministrator) values.aministrator = '';
       dispatch({
         type: 'register/register',
         payload: { ...values },
       }).then((res: any) => {
         if (res) {
-          history.push('/main');
+          history.push('/login');
         } else {
           message.error('注册失败, 检查邮箱或用户名是否重复！');
         }
