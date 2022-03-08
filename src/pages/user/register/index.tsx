@@ -231,7 +231,7 @@ const Index = (props: any) => {
 
         <Form.Item
           label="用户类型"
-          name="role"
+          name="role_id"
           style={{ marginBottom: 0 }}
           rules={[
             {
