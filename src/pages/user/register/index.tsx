@@ -287,7 +287,7 @@ const Index = (props: any) => {
           color: 'black',
         }}
       >
-        肾病辅助诊疗系统
+        肾脏图像分割系统
       </h2>
       <Regitster />
     </div>
