@@ -64,12 +64,12 @@ const Index = (props: any) => {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="姓名"
-          name="account"
+          label="电话"
+          name="phone"
           rules={[
             {
               required: true,
-              message: '请输入姓名!',
+              message: '请输入电话号码!',
             },
           ]}
         >
@@ -145,7 +145,7 @@ const Index = (props: any) => {
           color: 'black',
         }}
       >
-        肾病辅助诊疗系统
+        肾脏图像分割系统
       </h2>
       <Login />
     </div>

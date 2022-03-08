@@ -40,7 +40,7 @@ const Index = (props: any) => {
     },
   };
 
-  const Login = () => {
+  const Regitster = () => {
     const [value, setValue] = React.useState(1);
     const [verification, setVerification] = React.useState(true);
 
@@ -55,7 +55,7 @@ const Index = (props: any) => {
 
     const onFinish = (values: any) => {
       history.push('/main');
-      /* if (!values.aministrator) values.aministrator = '';
+      if (!values.aministrator) values.aministrator = '';
       dispatch({
         type: 'register/register',
         payload: { ...values },
@@ -65,7 +65,7 @@ const Index = (props: any) => {
         } else {
           message.error('注册失败, 检查邮箱或用户名是否重复！');
         }
-      }); */
+      });
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -289,7 +289,7 @@ const Index = (props: any) => {
       >
         肾病辅助诊疗系统
       </h2>
-      <Login />
+      <Regitster />
     </div>
   );
 };
