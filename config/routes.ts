@@ -1,15 +1,15 @@
 const routerConfig = [
   {
     path: '/user',
-    components: '@/layouts/Userlayout/Userlayouts',
+    component: '@/layouts/Userlayout/Userlayouts.tsx',
     routes: [
       {
         path: '/user/login',
-        components: '@/pages/user/login/index',
+        component: '@/pages/user/login/index',
       },
       {
         path: '/user/register',
-        components: '@/pages/user/register/index',
+        component: '@/pages/user/register/index',
       },
     ],
   },
@@ -20,15 +20,15 @@ const routerConfig = [
     routes: [
       {
         path: '/',
-        components: '@/pages/index',
+        component: '@/pages/index',
       },
       {
         path: '/basicInfo',
-        components: '@/pages/basicInfo/index',
+        component: '@/pages/basicInfo/index',
       },
       {
         path: '/doctorInfo',
-        components: '@/pages/doctorInfo/index',
+        component: '@/pages/doctorInfo/index',
       },
     ],
   },

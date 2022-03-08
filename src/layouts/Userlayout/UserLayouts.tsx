@@ -1,4 +1,5 @@
-import { Link, connect } from 'umi';
+import { Link } from 'umi';
+import { connect } from 'dva';
 import React from 'react';
 import logo from '../assets/logo.svg';
 import styles from './UserLayouts.less';

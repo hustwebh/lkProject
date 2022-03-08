@@ -1,10 +1,10 @@
-import { connect } from 'umi';
+import { connect } from 'dva';
 import style from './index.less';
 
-// interface mainContentProps {
-//   MainPage: any;
-//   wappers: any;
-// }
+interface mainContentProps {
+  MainPage: any;
+  // wappers: any;
+}
 
 const MainContent: any = (props: any) => {
   return <div className={style.rightContent}>各个菜单界面</div>;

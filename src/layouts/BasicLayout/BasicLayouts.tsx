@@ -58,6 +58,7 @@ const roles = ['医生', '护士', '管理员'];
 
 interface BasicLayoutsContentProps {
   dispatch: Dispatch;
+  sound_list: any;
   soundListLoading: boolean;
   // loading: boolean;
 }
@@ -523,7 +524,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
   );
 };
 
-const mapStateToProps = ({ loading }: { loading: boolean }) => {
+const mapStateToProps = ({ loading }: { loading: boolean; soundList: any }) => {
   // console.log(loading)
   return {
     // InforImport: inforImport,
