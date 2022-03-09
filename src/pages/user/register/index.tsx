@@ -140,7 +140,7 @@ const Index = (props: any) => {
           name="email"
           rules={[
             {
-              required: true,
+              required: false,
               message: '请输入邮箱!',
             },
             {
@@ -248,7 +248,7 @@ const Index = (props: any) => {
         </Form.Item>
 
         <Form.Item
-          label="校验码"
+          label="授权码"
           name="aministrator"
           style={{ color: 'balck' }}
         >
