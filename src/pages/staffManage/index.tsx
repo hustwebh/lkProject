@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button, Tooltip } from 'antd';
 import { DownOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import ProTable, { TableDropdown } from '@ant-design/pro-table';
@@ -16,25 +16,44 @@ export type TableListItem = {
   id_card: string;
   name: string;
   gender: string;
-  hospital_id: any;
+  hospital_name: any;
   createdAt: number;
   phone: string;
   email: string;
   medical_user_id: string;
+  role_id: string;
 };
+
+// interface ActionType {
+//   reload: (resetPageIndex?: boolean) => void;
+//   reloadAndRest: () => void;
+//   reset: () => void;
+//   clearSelected?: () => void;
+//   startEditable: (rowKey: string) => boolean;
+//   cancelEditable: (rowKey: string) => boolean;
+// }
+
+// const ref = useRef<ActionType>();
+
+interface ParmeType {
+  current?: number;
+  pageSize?: number;
+}
 const tableListDataSource: TableListItem[] = [];
 
 const creators = ['付小小', '曲丽丽', '林东东', '陈帅帅', '兼某某'];
+const typeofUser = ['医生', '管理员', '护士'];
 
-for (let i = 0; i < 20; i += 1) {
+for (let i = 0; i < 50; i += 1) {
   tableListDataSource.push({
     key: i,
     id_card: '433130200212200139',
     name: creators[Math.floor(Math.random() * creators.length)],
     gender: '男',
-    hospital_id: HospitalList[1],
+    hospital_name: HospitalList[1],
     createdAt: Date.now() - Math.floor(Math.random() * 100000),
-    medical_user_id: '管理员',
+    medical_user_id: '1',
+    role_id: typeofUser[i % 2],
     phone: '111111111',
     email: `${i}@qq.com`,
   });
@@ -67,8 +86,8 @@ const columns: ProColumns<TableListItem>[] = [
   },
   {
     title: '工作单位',
-    width: 150,
-    dataIndex: 'hospital_id',
+    width: 170,
+    dataIndex: 'hospital_name',
     initialValue: 'all',
     // valueEnum: {
     //   all: { text: '全部', status: 'Default' },
@@ -96,27 +115,51 @@ const columns: ProColumns<TableListItem>[] = [
     dataIndex: 'phone',
   },
   {
-    title: 'yonghuleibie',
+    title: '用户类别',
     width: 120,
-    dataIndex: 'medical_user_id',
+    dataIndex: 'role_id',
   },
   {
     title: '操作',
     width: 180,
     key: 'option',
     valueType: 'option',
-    render: () => [
-      <Button key="link">编辑</Button>,
-      <Button key="link">删除</Button>,
-    ],
+    render: (_, record) => {
+      if (record.role_id === '管理员') {
+        return [<Button key="edit">编辑</Button>];
+      } else {
+        return [
+          <Button key="edit">编辑</Button>,
+          <Button key="delete">删除</Button>,
+        ];
+      }
+    },
   },
 ];
 
-export default function StaffManage() {
+const StaffManage = (props: any) => {
+  const { dispatch } = props;
+
+  const setRowKey = (record: TableListItem) => {
+    return record.id_card;
+  };
+
+  const queryTableData = (params: ParmeType) => {
+    return dispatch({
+      type: 'UserTable/getUserList',
+      payload: {
+        ...params,
+      },
+    });
+  };
+
   return (
     <div className={style.mainContent}>
       <ProTable<TableListItem>
+        scroll={{ y: 752 }}
         columns={columns}
+        tableClassName={style.tablePro}
+        // request={(params) => queryTableData(params)}
         request={(params, sorter, filter) => {
           // 表单搜索项会从 params 传入，传递给后端接口。
           console.log(params, sorter, filter);
@@ -125,24 +168,17 @@ export default function StaffManage() {
             success: true,
           });
         }}
-        rowKey="key"
+        rowKey={setRowKey}
         pagination={{
           showQuickJumper: true,
+          total: tableListDataSource.length,
         }}
         search={false}
         dateFormatter="string"
         headerTitle="注册用户列表"
-        toolBarRender={() => [
-          <Button key="show">查看日志</Button>,
-          <Button key="out">
-            导出数据
-            <DownOutlined />
-          </Button>,
-          <Button type="primary" key="primary">
-            创建应用
-          </Button>,
-        ]}
       />
     </div>
   );
-}
+};
+
+export default StaffManage;
