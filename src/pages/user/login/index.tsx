@@ -40,7 +40,7 @@ const Index = (props: any) => {
       }).then((res: any) => {
         console.log(res);
         if (res) {
-          history.push('/');
+          history.push('/basicInfo');
         } else {
           message.error('登录失败！');
         }

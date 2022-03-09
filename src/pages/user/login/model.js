@@ -21,32 +21,43 @@ const Model = {
       console.log('back data', data);
       if (code === 200) {
         console.log('token', data);
-        yield put({
-          type: 'changeLoginStatus',
-          payload: data,
-        });
-        const urlParams = new URL(window.location.href);
-        const params = getPageQuery();
-
-        let { redirect } = params;
-
-        if (redirect) {
-          const redirectUrlParams = new URL(redirect);
-
-          if (redirectUrlParams.origin === urlParams.origin) {
-            redirect = redirect.substr(urlParams.origin.length);
-
-            if (redirect.match(/^\/.*#/)) {
-              redirect = redirect.substr(redirect.indexOf('#') + 1);
-            }
-          } else {
-            window.location.href = '/';
-            message.success('登录成功！');
-            return true;
-          }
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('roles', data.role_id);
+        console.log('localStorage.token', localStorage.getItem('roles'));
+        // yield put({
+        //   type: 'changeLoginStatus',
+        //   payload: data,
+        // });
+        // const urlParams = new URL(window.location.href);
+        // const params = getPageQuery();
+        // console.log('params', params);
+        // let { redirect } = params;
+        console.log(data);
+        if (data) {
+          // alert('token222', data);
+          window.location.href = '/';
+          message.success('登录成功！');
+          return true;
+        } else {
+          return false;
         }
-        redirect = redirect === 'login' ? '/' : redirect;
-        history.replace(redirect || '/');
+        // if (redirect) {
+        //   const redirectUrlParams = new URL(redirect);
+
+        //   if (redirectUrlParams.origin === urlParams.origin) {
+        //     redirect = redirect.substr(urlParams.origin.length);
+
+        //     if (redirect.match(/^\/.*#/)) {
+        //       redirect = redirect.substr(redirect.indexOf('#') + 1);
+        //     }
+        //   } else {
+        //     window.location.href = '/';
+        //     message.success('登录成功！');
+        //     return true;
+        //   }
+        // }
+        // redirect = redirect === 'login' ? '/' : redirect;
+        // history.replace(redirect || '/');
       }
     },
 
@@ -68,8 +79,10 @@ const Model = {
   reducers: {
     // effect获取数据处理方法
     changeLoginStatus(state, { payload }) {
+      console.log('payload', payload);
       localStorage.setItem('token', payload.data.token);
       localStorage.setItem('roles', payload.data.role_id);
+      console.log('localStorage.token', localStorage.getItem('roles'));
       console.log(`login, ${payload.data.role_id}`);
       return { ...state };
     },

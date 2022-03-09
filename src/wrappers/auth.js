@@ -3,11 +3,13 @@ import React from 'react';
 
 export default (props) => {
   // const isLogin = localStorage.getItem('roles') !== null;
+
   if (localStorage.getItem('roles')) {
     let roles = JSON.parse(localStorage.getItem('roles'));
-    roles = typeof roles === 'string' ? [roles] : roles;
-    const isAuthorized = roles.indexOf('ROLE_ADMIN') !== -1;
-    if (isAuthorized) {
+    // roles = typeof roles === 'string' ? [roles] : roles;
+    // const isAuthorized = roles.indexOf('ROLE_ADMIN') !== -1;
+    console.log('roles', roles);
+    if (roles === 1) {
       return <div>{props.children}</div>;
     }
   }
