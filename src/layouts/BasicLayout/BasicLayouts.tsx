@@ -467,7 +467,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
         <Header style={{ backgroundColor: '#f0f0f0', zIndex: 999, height: 66 }}>
           <div className="logo">
             <img src={topLogo} alt="肾脏诊疗系统" style={{ width: 30 }} />
-            <b>肾脏诊疗系统</b>
+            <b>肾脏图像分割系统</b>
           </div>
 
           <TopMenu />
