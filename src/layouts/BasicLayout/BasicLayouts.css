@@ -1,5 +1,5 @@
 .side {
-  background-color: #3f475a;
+  background-color: #eaeaeb;
   left: 0;
   height: calc(100vh - 64px);
   /* overflow: outo; */
@@ -27,7 +27,7 @@
 
 .logo {
   float: left;
-  width: 120px;
+  width: 160px;
   margin-right: 8px;
   color: #08979c;
 }

@@ -490,8 +490,8 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
                 }
               }
             >
-              {/* <Link to="/staffManage">用户中心 </Link>| */}
-              <Button>用户中心</Button>
+              <Link to="/staffManage">用户中心 </Link>
+              {/* <Button>用户中心</Button> */}
             </span>
 
             {/* <span>{` 您好，${
