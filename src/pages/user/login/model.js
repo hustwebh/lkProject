@@ -14,6 +14,21 @@ const Model = {
   //     return { ...state, tokens: { 1: {}, 2: {} } };
   //   },
   // },
+  // reducers: {
+  //   logout() {
+  //     localStorage.removeItem('token');
+  //     localStorage.removeItem('roles');
+  //     // 不是login界面的话跳转到login界面
+  //     if (window.location.pathname !== '/user/login') {
+  //       history.replace({
+  //         pathname: '/user/login',
+  //         search: stringify({
+  //           redirect: window.location.href,
+  //         }),
+  //       });
+  //     }
+  //   },
+  // },
 
   effects: {
     *login({ payload }, { call, put }) {
@@ -34,9 +49,6 @@ const Model = {
         // let { redirect } = params;
         console.log(data);
         if (data) {
-          // alert('token222', data);
-          window.location.href = '/';
-          message.success('登录成功！');
           return true;
         } else {
           return false;
@@ -60,20 +72,6 @@ const Model = {
         // history.replace(redirect || '/');
       }
     },
-
-    logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('roles');
-      // 不是login界面的话跳转到login界面
-      if (window.location.pathname !== '/user/login') {
-        history.replace({
-          pathname: '/user/login',
-          search: stringify({
-            redirect: window.location.href,
-          }),
-        });
-      }
-    },
   },
 
   reducers: {
@@ -83,7 +81,7 @@ const Model = {
       localStorage.setItem('token', payload.data.token);
       localStorage.setItem('roles', payload.data.role_id);
       console.log('localStorage.token', localStorage.getItem('roles'));
-      console.log(`login, ${payload.data.role_id}`);
+      // console.log(`login, ${payload.data.role_id}`);
       return { ...state };
     },
   },

@@ -447,16 +447,17 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
     <Menu>
       <Menu.Item>{/* <ChangeNicknameModal /> */}</Menu.Item>
       <Menu.Item>{/* <ChangePasswordModal /> */}</Menu.Item>
-      {/* <Menu.Item>
+      <Menu.Item>
         <a
           onClick={() => {
-            CookieUtil.unsetAll();
+            localStorage.removeItem('token');
+            localStorage.removeItem('roles');
             history.push('/user/login');
           }}
         >
           退出登录
         </a>
-      </Menu.Item> */}
+      </Menu.Item>
     </Menu>
   );
 

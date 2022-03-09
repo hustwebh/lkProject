@@ -33,14 +33,14 @@ const Index = (props: any) => {
 
   const Login = () => {
     const onFinish = (values: any) => {
-      console.log(values);
       dispatch({
         type: 'login/login',
         payload: values,
       }).then((res: any) => {
         console.log(res);
         if (res) {
-          history.push('/basicInfo');
+          message.success('登录成功！');
+          history.push('/');
         } else {
           message.error('登录失败！');
         }

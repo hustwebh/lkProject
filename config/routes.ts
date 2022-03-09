@@ -1,7 +1,7 @@
 const routerConfig = [
   {
     path: '/user',
-    component: '@/layouts/Userlayout/Userlayouts.tsx',
+    // component: '@/layouts/Userlayout/Userlayouts',
     routes: [
       {
         path: '/user/login',
