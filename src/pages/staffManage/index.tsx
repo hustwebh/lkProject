@@ -29,7 +29,7 @@ interface ParmeType {
 }
 
 const PageCard = (props: any) => {
-  const { dispatch } = props;
+  const { dispatch, UserMsg, loading } = props;
 
   const [activeTab, setActiveTab] = useState('UserManagement');
   const creators = ['付小小', '曲丽丽', '林东东', '陈帅帅', '兼某某'];
@@ -128,18 +128,23 @@ const PageCard = (props: any) => {
     },
   ];
 
-  const StaffManage = () => {
+  const StaffManage = (props: any) => {
+    const { UserMsg } = props;
+
     const setRowKey = (record: TableListItem) => {
       return record.medical_user_id;
     };
 
     const queryTableData = (params: ParmeType) => {
-      console.log('getListStart', params);
       return dispatch({
         type: 'UserTable/getUserList',
         payload: {
           ...params,
         },
+      }).then((res: boolean) => {
+        if (res) {
+          return UserMsg;
+        }
       });
     };
 
@@ -194,7 +199,7 @@ const PageCard = (props: any) => {
   ];
 
   const contentList: any = {
-    UserManagement: <StaffManage />,
+    UserManagement: <StaffManage UserMsg={UserMsg} />,
     RolePermissions: <p>角色权限分配</p>,
     DoctorSettings: <p>主治医生分配</p>,
     PersonMsgSetting: <p>个人信息管理</p>,
@@ -224,6 +229,7 @@ const PageCard = (props: any) => {
 function mapStateToProps(state: any) {
   return {
     loading: state.loading,
+    UserMsg: state.UserMsg,
   };
 }
 
