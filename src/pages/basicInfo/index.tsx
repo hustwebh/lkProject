@@ -10,10 +10,12 @@ import {
 } from 'antd';
 import style from './index.less';
 import { Link, history } from 'umi';
+import { useState } from 'react';
 
 const BasicInfo = (props: any) => {
   const { dispatch } = props;
   const { Option } = Select;
+  const [selectDoctors, setSelectDoctors] = useState(true);
 
   const layout = {
     labelCol: {
@@ -184,8 +186,12 @@ const BasicInfo = (props: any) => {
             },
           ]}
         >
-          <Select style={{ width: 307 }}>
-            <Option value={1}>张三</Option>
+          <Select
+            style={{ width: 307 }}
+            disabled={selectDoctors}
+            defaultValue={1}
+          >
+            <Option value={1}>方勇</Option>
             <Option value={2}>李四</Option>
             <Option value={3}>王五</Option>
           </Select>
