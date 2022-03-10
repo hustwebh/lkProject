@@ -31,6 +31,8 @@ interface ParmeType {
 const tableListDataSource: TableListItem[] = [];
 
 const Index = (props: any) => {
+  const roleArray = ['', '医生', '护士', '管理员'];
+
   const { dispatch, UserMsg } = props;
 
   const columns: ProColumns<TableListItem>[] = [
@@ -53,12 +55,12 @@ const Index = (props: any) => {
       title: '工作单位',
       width: 170,
       dataIndex: 'hospital_name',
-      initialValue: 'all',
     },
     {
       title: '用户类别',
       width: 100,
-      dataIndex: 'role_id',
+      // dataIndex: roleArray['role_id'],
+      render: (_) => <span>roleArray[_]</span>,
     },
     {
       title: '邮箱地址',
@@ -76,7 +78,7 @@ const Index = (props: any) => {
       width: 160,
       // key: 'since',
       dataIndex: 'createdAt',
-      valueType: 'date',
+      // valueType: 'date',
       // sorter: (a, b) => a.createdAt - b.createdAt,
     },
     {
