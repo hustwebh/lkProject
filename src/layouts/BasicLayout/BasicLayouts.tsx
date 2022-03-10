@@ -259,10 +259,10 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
             <Link to="/CTInfo">CT影像录入</Link>
           </Menu.Item>
         </SubMenu>
-        <Menu.Item key="/infoSearch" icon={<HomeOutlined />}>
+        <Menu.Item key="/infoSearch">
           <Link to="/infoSearch">信息检索</Link>
         </Menu.Item>
-        <Menu.Item key="/imgSplit" icon={<HomeOutlined />}>
+        <Menu.Item key="/imgSplit">
           {/* uuid从props中获得，现在先用tmpuuid代替 */}
           {/* <Link to={`/imgSplit?uuid=${uuid}`}>肾脏图像分割</Link> */}
           <Link to={`/imgSplit?uuid=${tmpuuid}`}>肾脏图像分割</Link>
