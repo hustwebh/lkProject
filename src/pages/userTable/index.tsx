@@ -31,7 +31,7 @@ interface ParmeType {
 const tableListDataSource: TableListItem[] = [];
 
 const Index = (props: any) => {
-  const { dispatch } = props;
+  const { dispatch, UserMsg } = props;
 
   const creators = ['付小小', '曲丽丽', '林东东', '陈帅帅', '兼某某'];
   const typeofUser = ['医生', '管理员', '护士'];
@@ -109,13 +109,13 @@ const Index = (props: any) => {
   };
 
   const queryTableData = (params: ParmeType) => {
-    console.log('start');
     return dispatch({
       type: 'UserTable/getUserList',
       payload: params,
-    }).then((res: any) => {
-      console.log('res', res);
-      return res;
+    }).then((res: boolean) => {
+      if (res) {
+        return UserMsg;
+      }
     });
   };
 
@@ -148,11 +148,11 @@ const Index = (props: any) => {
 };
 
 function mapStateToProps(state: any) {
-  // console.log('UserMsg', state.UserMsg);
+  console.log('UserMsg', state.UserTable.UserMsg);
 
   return {
     // loading: state.loading,
-    // UserMsg: state.UserMsg,
+    UserMsg: state.UserTable.UserMsg,
   };
 }
 
