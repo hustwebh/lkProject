@@ -15,7 +15,9 @@ import { useState } from 'react';
 const BasicInfo = (props: any) => {
   const { dispatch } = props;
   const { Option } = Select;
-  const [selectDoctors, setSelectDoctors] = useState(true);
+  const [selectDoctors, setSelectDoctors] = useState(false);
+
+  const doctors = ['张华', '汪伟', '沈明', '董磊', '熊磊', '张超', '王琦'];
 
   const layout = {
     labelCol: {
@@ -189,11 +191,11 @@ const BasicInfo = (props: any) => {
           <Select
             style={{ width: 307 }}
             disabled={selectDoctors}
-            defaultValue={1}
+            defaultValue={0}
           >
-            <Option value={1}>方勇</Option>
-            <Option value={2}>李四</Option>
-            <Option value={3}>王五</Option>
+            {doctors.map((item, index) => {
+              return <Option value={index}>{item}</Option>;
+            })}
           </Select>
         </Form.Item>
 

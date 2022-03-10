@@ -148,7 +148,7 @@ const Index = (props: any) => {
 };
 
 function mapStateToProps(state: any) {
-  console.log('UserMsg', state.UserTable.UserMsg);
+  console.log('UserMsg', state);
 
   return {
     // loading: state.loading,

@@ -26,10 +26,8 @@ const Model: UserTableType = {
       if (code === 200) {
         yield put({
           type: 'UserMsg',
-          payload: {
-            success: true,
-            ...data, //user[],total:number,pageSize:number
-          },
+          payload: data,
+          //user[],total:number,pageSize:number
         });
         return true;
       } else {
@@ -41,10 +39,15 @@ const Model: UserTableType = {
 
   reducers: {
     UserMsg(state, { payload }) {
-      console.log('reducers');
+      const { user, total, pageSize } = payload;
       return {
         ...state,
-        UserMsg: payload,
+        UserMsg: {
+          success: true,
+          data: payload.user,
+          total,
+          pageSize,
+        },
       };
     },
   },
