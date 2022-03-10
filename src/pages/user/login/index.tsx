@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { Input, Space, Form, Button, Checkbox, message, Row, Col } from 'antd';
+import { Input, Space, Form, Button, message, Row, Col } from 'antd';
 import { Link, history } from 'umi';
 import { connect } from 'dva';
 import logo from '../../../assets/favicon.png';
 
 import style from './style.less';
-// import logo from '';
 
 const Index = (props: any) => {
   const { dispatch } = props;
