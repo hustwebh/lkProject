@@ -34,6 +34,27 @@ const Model: UserTableType = {
         message.error('获取用户信息失败请刷新页面');
         return false;
       }
+      // const data = {
+      //   'user': [{
+      //     'create_time': '111',
+      //     'email': '111',
+      //     'gender': '男',
+      //     'hospital_name': '111',
+      //     'id_card': '111',
+      //     'medical_user_id': 13,
+      //     'name': '111',
+      //     'phone': '111',
+      //     'role_id': 3
+      //   }],
+      //   'total': 1,
+      //   'pageSize': 1
+      // }
+      // yield put({
+      //   type: 'UserMsg',
+      //   payload: data,
+      //   //user[],total:number,pageSize:number
+      // });
+      // return true
     },
   },
 

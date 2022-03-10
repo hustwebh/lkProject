@@ -11,12 +11,11 @@ import style from './index.less';
 import { connect } from 'dva';
 
 export type TableListItem = {
-  key: number;
   id_card: string;
   name: string;
   gender: string;
   hospital_name: any;
-  createdAt: string;
+  create_time: string;
   phone: string;
   email: string;
   medical_user_id: number;
@@ -60,7 +59,7 @@ const Index = (props: any) => {
       title: '用户类别',
       width: 100,
       // dataIndex: roleArray['role_id'],
-      render: (_) => <span>roleArray[_]</span>,
+      render: (_, record) => <span>{roleArray[record.role_id]}</span>,
     },
     {
       title: '邮箱地址',
@@ -77,7 +76,7 @@ const Index = (props: any) => {
       title: '创建时间',
       width: 160,
       // key: 'since',
-      dataIndex: 'createdAt',
+      dataIndex: 'create_time',
       // valueType: 'date',
       // sorter: (a, b) => a.createdAt - b.createdAt,
     },
@@ -142,7 +141,7 @@ const Index = (props: any) => {
 };
 
 function mapStateToProps(state: any) {
-  console.log('UserMsg', state);
+  console.log('UserMsg', state.UserTable.UserMsg);
 
   return {
     // loading: state.loading,
