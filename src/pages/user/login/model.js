@@ -39,15 +39,6 @@ const Model = {
         localStorage.setItem('token', data.token);
         localStorage.setItem('roles', data.role_id);
         console.log('localStorage.token', localStorage.getItem('roles'));
-        // yield put({
-        //   type: 'changeLoginStatus',
-        //   payload: data,
-        // });
-        // const urlParams = new URL(window.location.href);
-        // const params = getPageQuery();
-        // console.log('params', params);
-        // let { redirect } = params;
-        console.log(data);
         if (data) {
           return true;
         } else {

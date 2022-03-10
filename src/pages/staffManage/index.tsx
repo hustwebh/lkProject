@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Tooltip, Card } from 'antd';
 import {
   DownOutlined,
@@ -28,10 +28,11 @@ interface ParmeType {
   pageSize?: number;
 }
 
-const PageCard = (props: any) => {
-  const { dispatch, UserMsg, loading } = props;
+const tableListDataSource: TableListItem[] = [];
 
-  const [activeTab, setActiveTab] = useState('UserManagement');
+const StaffManage = (props: any) => {
+  const { dispatch, UserMsg } = props;
+
   const creators = ['付小小', '曲丽丽', '林东东', '陈帅帅', '兼某某'];
   const typeofUser = ['医生', '管理员', '护士'];
   const HospitalList = [
@@ -40,29 +41,11 @@ const PageCard = (props: any) => {
     '武汉市妇幼保健院',
   ];
 
-  const tableListDataSource: TableListItem[] = [];
-
-  // for (let i = 0; i < 50; i += 1) {
-  //   tableListDataSource.push({
-  //     key: i,
-  //     id_card: '433130200212200139',
-  //     name: creators[Math.floor(Math.random() * creators.length)],
-  //     gender: '男',
-  //     hospital_name: HospitalList[1],
-  //     createdAt: Date.now() - Math.floor(Math.random() * 100000),
-  //     medical_user_id: 1,
-  //     role_id: typeofUser[i % 2],
-  //     phone: '111111111',
-  //     email: `3115988782@qq.com`,
-  //   });
-  // }
-
   const columns: ProColumns<TableListItem>[] = [
     {
       title: '身份证号',
       width: 230,
       dataIndex: 'id_card',
-      // render: (_) => <a>{_}</a>,
     },
     {
       title: '姓名',
@@ -79,13 +62,6 @@ const PageCard = (props: any) => {
       width: 170,
       dataIndex: 'hospital_name',
       initialValue: 'all',
-      // valueEnum: {
-      //   all: { text: '全部', status: 'Default' },
-      //   close: { text: '关闭', status: 'Default' },
-      //   running: { text: '运行中', status: 'Processing' },
-      //   online: { text: '已上线', status: 'Success' },
-      //   error: { text: '异常', status: 'Error' },
-      // },
     },
     {
       title: '用户类别',
@@ -128,56 +104,65 @@ const PageCard = (props: any) => {
     },
   ];
 
-  const StaffManage = (props: any) => {
-    const { UserMsg } = props;
-
-    const setRowKey = (record: TableListItem) => {
-      return record.medical_user_id;
-    };
-
-    const queryTableData = (params: ParmeType) => {
-      return dispatch({
-        type: 'UserTable/getUserList',
-        payload: {
-          ...params,
-        },
-      }).then((res: boolean) => {
-        if (res) {
-          return UserMsg;
-        }
-      });
-    };
-
-    return (
-      <div className={style.mainContent}>
-        <ProTable<TableListItem>
-          scroll={{ y: 752, x: 'max-content' }}
-          columns={columns}
-          request={(params) => queryTableData(params)}
-          // request={(params, sorter, filter) => {
-          //   // 表单搜索项会从 params 传入，传递给后端接口。
-          //   console.log(params, sorter, filter);
-          //   return Promise.resolve({
-          //     data: tableListDataSource,
-          //     success: true,
-          //   });
-          // }}
-          rowKey={setRowKey}
-          pagination={{
-            showQuickJumper: true,
-          }}
-          toolBarRender={() => [
-            <Button key="button" icon={<PlusOutlined />} type="primary">
-              新建
-            </Button>,
-          ]}
-          search={false}
-          dateFormatter="string"
-          headerTitle="注册用户列表"
-        />
-      </div>
-    );
+  const setRowKey = (record: TableListItem) => {
+    return record.medical_user_id;
   };
+
+  const queryTableData = (params: ParmeType) => {
+    console.log('start');
+    return dispatch({
+      type: 'UserTable/getUserList',
+      payload: params,
+    }).then((res: boolean) => {
+      if (res) {
+        return UserMsg;
+      } else {
+        return { success: false };
+      }
+    });
+  };
+
+  return (
+    <div className={style.mainContent}>
+      <ProTable<TableListItem>
+        scroll={{ y: 752, x: 'max-content' }}
+        columns={columns}
+        // request={(params) => queryTableData(params)}
+        request={(params, sorter, filter) => {
+          // 表单搜索项会从 params 传入，传递给后端接口。
+          console.log(params, sorter, filter);
+          return queryTableData(params);
+        }}
+        rowKey={setRowKey}
+        pagination={{
+          showQuickJumper: true,
+        }}
+        toolBarRender={() => [
+          <Button key="button" icon={<PlusOutlined />} type="primary">
+            新建
+          </Button>,
+        ]}
+        search={false}
+        dateFormatter="string"
+        headerTitle="注册用户列表"
+      />
+    </div>
+  );
+};
+
+function mapStateToProps(state: any) {
+  console.log('UserMsg', state.UserMsg);
+
+  return {
+    // loading: state.loading,
+    UserMsg: state.UserMsg,
+  };
+}
+
+connect(mapStateToProps)(StaffManage);
+
+const PageCard = () => {
+  const [activeTab, setActiveTab] = useState('UserManagement');
 
   const tabList = [
     {
@@ -199,7 +184,7 @@ const PageCard = (props: any) => {
   ];
 
   const contentList: any = {
-    UserManagement: <StaffManage UserMsg={UserMsg} />,
+    UserManagement: <StaffManage />,
     RolePermissions: <p>角色权限分配</p>,
     DoctorSettings: <p>主治医生分配</p>,
     PersonMsgSetting: <p>个人信息管理</p>,
@@ -214,7 +199,6 @@ const PageCard = (props: any) => {
       style={{ width: '100%', padding: 0 }}
       bordered={false}
       title="管理员用户中心"
-      // extra={<a href="#">More</a>}
       tabList={tabList}
       activeTabKey={activeTab}
       onTabChange={(key) => {
@@ -226,11 +210,4 @@ const PageCard = (props: any) => {
   );
 };
 
-function mapStateToProps(state: any) {
-  return {
-    loading: state.loading,
-    UserMsg: state.UserMsg,
-  };
-}
-
-export default connect(mapStateToProps)(PageCard);
+export default PageCard;
