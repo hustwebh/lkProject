@@ -16,11 +16,11 @@ export type TableListItem = {
   name: string;
   gender: string;
   hospital_name: any;
-  createdAt: number;
+  createdAt: string;
   phone: string;
   email: string;
   medical_user_id: number;
-  role_id: string;
+  role_id: number;
 };
 
 interface ParmeType {
@@ -32,14 +32,6 @@ const tableListDataSource: TableListItem[] = [];
 
 const Index = (props: any) => {
   const { dispatch, UserMsg } = props;
-
-  const creators = ['付小小', '曲丽丽', '林东东', '陈帅帅', '兼某某'];
-  const typeofUser = ['医生', '管理员', '护士'];
-  const HospitalList = [
-    '湖北省第三人民医院',
-    '武汉市第一人民医院',
-    '武汉市妇幼保健院',
-  ];
 
   const columns: ProColumns<TableListItem>[] = [
     {
@@ -85,14 +77,14 @@ const Index = (props: any) => {
       // key: 'since',
       dataIndex: 'createdAt',
       valueType: 'date',
-      sorter: (a, b) => a.createdAt - b.createdAt,
+      // sorter: (a, b) => a.createdAt - b.createdAt,
     },
     {
       title: '操作',
       key: 'option',
       valueType: 'option',
       render: (_, record) => {
-        if (record.role_id === '管理员') {
+        if (record.role_id === 3) {
           return [<Button key="edit">编辑</Button>];
         } else {
           return [
