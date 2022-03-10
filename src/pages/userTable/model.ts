@@ -44,7 +44,7 @@ const Model: UserTableType = {
         ...state,
         UserMsg: {
           success: true,
-          data: payload.user,
+          data: user,
           total,
           pageSize,
         },
