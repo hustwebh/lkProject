@@ -15,7 +15,7 @@ const Index = () => {
           style={{ width: 500 }}
           placeholder="请输入查询内容"
           allowClear
-          enterButton="Search"
+          enterButton="搜索"
           size="large"
           onSearch={onSearch}
         />
