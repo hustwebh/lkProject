@@ -9,7 +9,7 @@ export async function getUserMsg({
   pageSize: number;
 }) {
   return request(
-    `${SERVICEURL}/api/v1/user?current=${current}&pageSize=${pageSize}`,
+    `${SERVICEURL}/api/v1/alluser?current=${current}&pageSize=${pageSize}`,
     {
       method: 'GET',
       requestType: 'form',
