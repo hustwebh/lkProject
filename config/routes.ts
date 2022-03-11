@@ -31,6 +31,10 @@ const routerConfig = [
         component: '@/pages/doctorInfo/index',
       },
       {
+        path: '/ctInfo',
+        component: '@/pages/ctInfo/index',
+      },
+      {
         path: '/infoSearch',
         component: '@/pages/infoSearch/index',
       },
