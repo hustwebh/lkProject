@@ -255,8 +255,8 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
           <Menu.Item key="/doctorInfo">
             <Link to="/doctorInfo">诊疗信息录入</Link>
           </Menu.Item>
-          <Menu.Item key="/CTInfo">
-            <Link to="/CTInfo">CT影像录入</Link>
+          <Menu.Item key="/ctInfo">
+            <Link to="/ctInfo">CT影像录入</Link>
           </Menu.Item>
         </SubMenu>
         <Menu.Item key="/infoSearch" icon={<HomeOutlined />}>
