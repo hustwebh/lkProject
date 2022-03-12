@@ -30,11 +30,12 @@ const Model: SiderMsgType = {
 
   effects: {
     *loginUserMsg({ payload }, { call, put }) {
-      const result = yield call(getLoginUserMsg, payload);
-      if (result) {
+      const { code, data } = yield call(getLoginUserMsg, payload);
+      console.log('result.data', data);
+      if (code === 200) {
         yield put({
-          type: 'save',
-          payload: result,
+          type: 'saveSiderMsg',
+          payload: data,
         });
       }
       // const result = {
@@ -53,11 +54,11 @@ const Model: SiderMsgType = {
       // })
     },
     *hospitalList({ payload }, { call, put }) {
-      const result = yield call(getHospitalList, payload);
-      if (result) {
+      const { code, data } = yield call(getHospitalList, payload);
+      if (code === 200) {
         yield put({
           type: 'saveHospitalList',
-          payload: result,
+          payload: data,
         });
       }
       // const result =

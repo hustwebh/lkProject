@@ -6,6 +6,7 @@
   /* border-right: 1px solid black; */
 }
 
+
 .main-content {
   background-color: white;
   height: calc(100vh - 64px);
@@ -30,6 +31,12 @@
   width: 160px;
   margin-right: 8px;
   color: #08979c;
+}
+.leftMenu{
+  float: left;
+  width: 80%;
+  line-height: inherit;
+  margin: 0;
 }
 
 .info {

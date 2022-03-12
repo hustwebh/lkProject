@@ -83,9 +83,9 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
       dispatch({
         type: 'SiderMsg/loginUserMsg',
       });
-      dispatch({
-        type: 'SiderMsg/hospitalList',
-      });
+      // dispatch({
+      //   type: 'SiderMsg/hospitalList',
+      // });
     } else {
       dispatch({
         type: 'SiderMsg/PatientMsg',
@@ -254,7 +254,10 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
         onClick={handleClick}
         defaultSelectedKeys={[props.location.pathname]}
         mode="horizontal"
-        style={{ backgroundColor: '#f0f0f0', float: 'left' }}
+        style={{
+          backgroundColor: '#f0f0f0',
+          marginLeft: '18%',
+        }}
       >
         <Menu.Item key="/" icon={<HomeOutlined />}>
           <Link to="/">主页</Link>
@@ -475,35 +478,40 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
   return (
     <div>
       <Layout>
-        <Header style={{ backgroundColor: '#f0f0f0', zIndex: 999, height: 66 }}>
-          <div className="logo">
-            <img src={topLogo} alt="肾脏诊疗系统" style={{ width: 30 }} />
-            <b>肾脏图像分割系统</b>
-          </div>
-
-          <TopMenu />
-
-          <div style={{ float: 'right' }}>
-            <Dropdown overlay={menu} placement="bottomRight">
-              <Avatar
-                size={48}
-                style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}
-                icon={<UserOutlined />}
-              />
-            </Dropdown>
+        <Header
+          style={{
+            backgroundColor: '#f0f0f0',
+            zIndex: 999,
+            height: 66,
+            // width:'100%'
+          }}
+        >
+          <div className="leftMenu">
+            <div className="logo">
+              <img src={topLogo} alt="肾脏诊疗系统" style={{ width: 30 }} />
+              <b>肾脏图像分割系统</b>
+            </div>
+            <TopMenu />
           </div>
 
           <div className="info">
-            <span
-              style={
-                {
-                  // display: CookieUtil.get('role') == 1 ? 'inline' : 'none',
-                }
-              }
-            >
+            <span>
               <Link to="/staffManage">用户中心 </Link>
               {/* <Button>用户中心</Button> */}
             </span>
+            <div style={{ float: 'right' }}>
+              <Dropdown overlay={menu} placement="bottomRight">
+                <Avatar
+                  size={50}
+                  style={{
+                    color: '#f56a00',
+                    backgroundColor: '#fde3cf',
+                    marginTop: -7,
+                  }}
+                  icon={<UserOutlined />}
+                />
+              </Dropdown>
+            </div>
 
             {/* <span>{` 您好，${
               CookieUtil.get('role')

@@ -5,13 +5,13 @@ import './index.css';
 const PeopleMsg = (props: any) => {
   const { siderMsg, hospitalList } = props;
   console.log('siderMsg', siderMsg);
-  console.log('hospitalList', hospitalList);
+  // console.log('hospitalList', hospitalList);
   // const { role_id } = siderMsg;
   const roles = ['医生', '护士', '管理员'];
 
-  const workHospital = hospitalList.filter((index: any) => {
-    return index.hospital_id === siderMsg.hospital_id;
-  })[0];
+  // const workHospital = hospitalList.filter((index: any) => {
+  //   return index.hospital_id === siderMsg.hospital_id;
+  // })[0];
 
   return (
     <div
@@ -56,7 +56,7 @@ const PeopleMsg = (props: any) => {
       <Divider />
       <p>
         <span>工作单位：</span>
-        {siderMsg.name}
+        {siderMsg.hospital_name}
       </p>
       <Divider />
     </div>
