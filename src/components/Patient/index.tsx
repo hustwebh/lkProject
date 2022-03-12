@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { CheckCard } from '@ant-design/pro-card';
 import symbol from '@/assets/favicon.png';
 import { Typography } from 'antd';
-import logo from '@/assets/favicon1.png';
+import manlogo from '@/assets/man.png';
+import womanlogo from '@/assets/woman.png';
 
 const { Paragraph } = Typography;
 
@@ -14,10 +15,17 @@ const PatientCard = (props: any) => {
 
   return (
     <CheckCard
-      style={{ height: 120 }}
-      avatar={logo}
-      title={patientMsg.name}
-      description={`病人注册时间${patientMsg.create_time},更多信息点击进入详情页面`}
+      style={{ height: 110 }}
+      avatar={patientMsg.gender === '男' ? manlogo : womanlogo}
+      title={`姓名:  ${patientMsg.name}`}
+      description={
+        <span>
+          性别:{patientMsg.gender}
+          <br />
+          联系电话:{patientMsg.phone}
+        </span>
+        // `性别:${patientMsg.gender}联系电话:${patientMsg.phone}`
+      }
     />
   );
 };
