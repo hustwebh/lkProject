@@ -56,7 +56,7 @@ const PeopleMsg = (props: any) => {
       <Divider />
       <p>
         <span>工作单位：</span>
-        {workHospital.name}
+        {siderMsg.name}
       </p>
       <Divider />
     </div>
