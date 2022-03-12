@@ -22,6 +22,15 @@ export type TableListItem = {
   role_id: number;
 };
 
+interface ActionType {
+  reload: (resetPageIndex?: boolean) => void;
+  reloadAndRest: () => void;
+  reset: () => void;
+  clearSelected?: () => void;
+  startEditable: (rowKey: number) => boolean;
+  cancelEditable: (rowKey: number) => boolean;
+}
+
 interface ParmeType {
   current?: number;
   pageSize?: number;
@@ -31,6 +40,14 @@ const tableListDataSource: TableListItem[] = [];
 
 const Index = (props: any) => {
   const roleArray = ['', '医生', '护士', '管理员'];
+  const ref = useRef();
+  useEffect(() => {
+    setTimeout(() => {
+      if (ref) {
+        ref.current.reload();
+      }
+    }, 100);
+  }, [1]);
 
   const { dispatch, UserMsg } = props;
 
@@ -102,6 +119,8 @@ const Index = (props: any) => {
   };
 
   const queryTableData = (params: ParmeType) => {
+    console.log('发送请求列表');
+
     return dispatch({
       type: 'UserTable/getUserList',
       payload: params,
@@ -115,6 +134,7 @@ const Index = (props: any) => {
   return (
     <div className={style.mainContent}>
       <ProTable<TableListItem>
+        actionRef={ref}
         scroll={{ y: 752, x: 'max-content' }}
         columns={columns}
         request={(params) => queryTableData(params)}
@@ -144,7 +164,7 @@ function mapStateToProps(state: any) {
   console.log('UserMsg', state.UserTable.UserMsg);
 
   return {
-    // loading: state.loading,
+    loading: state.loading,
     UserMsg: state.UserTable.UserMsg,
   };
 }

@@ -66,21 +66,33 @@ interface BasicLayoutsContentProps {
 const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
   const {
     dispatch,
-    // sound_list,
-    // soundListLoading,
-    // searchListLoading,
     location,
+    siderMsg,
+    hospitalList,
     uuid, // 在登录的时候获取
   } = props;
 
-  const tmpuuid = 'bfd34afd-f97a9f7c-c0551428-93a0c48a-0285c8ce';
+  const { pathname } = location;
+  const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: 'soundList/fetchSoundList',
-  //   });
-  //   return () => {};
-  // }, [1]);
+  const tmpuuid = 'bfd34afd-f97a9f7c-c0551428-93a0c48a-0285c8ce';
+  useEffect(() => {
+    console.log(pathname);
+    if (pathname.indexOf('?') === -1) {
+      //不是在病人详情界面
+      dispatch({
+        type: 'SiderMsg/loginUserMsg',
+      });
+      dispatch({
+        type: 'SiderMsg/hospitalList',
+      });
+    } else {
+      dispatch({
+        type: 'SiderMsg/PatientMsg',
+      });
+    }
+    return () => {};
+  }, [1]);
 
   // useEffect(() => {
   //   if (sound_list) {
@@ -115,7 +127,6 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
   // }, [location]);
 
   // const [sumForm] = Form.useForm();
-  const [loading, setloading] = useState(false);
 
   // const InforDrawer = ({ id, visible, setvisible }:{id:number,visible:any,setvisible:any}) => {
   //   const [item, setitem] = useState(undefined);
@@ -504,7 +515,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
         <Layout style={{ backgroundColor: '#343434' }}>
           <Sider className="side" width={350}>
-            <PeopleMsg />
+            <PeopleMsg siderMsg={siderMsg} hospitalList={hospitalList} />
           </Sider>
           <Content className="main-content">{props.children}</Content>
         </Layout>
@@ -525,12 +536,11 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
   );
 };
 
-const mapStateToProps = ({ loading }: { loading: boolean; soundList: any }) => {
-  // console.log(loading)
+const mapStateToProps = ({ SiderMsg }: { SiderMsg: any }) => {
+  const { siderMsg, hospitalList } = SiderMsg;
   return {
-    // InforImport: inforImport,
-    // soundListLoading: loading.effects['soundList/fetchSoundList'],
-    // sound_list: soundList.sound_list,
+    siderMsg,
+    hospitalList,
   };
 };
 
