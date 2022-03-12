@@ -63,7 +63,7 @@ const Index = (props: any) => {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="电话"
+          label="手机号"
           name="phone"
           rules={[
             {
