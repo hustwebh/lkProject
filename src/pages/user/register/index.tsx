@@ -123,12 +123,12 @@ const Index = (props: any) => {
         </Form.Item>
 
         <Form.Item
-          label="电话"
+          label="手机号"
           name="phone"
           rules={[
             {
               required: true,
-              message: '请输入联系电话!',
+              message: '请输入手机号码!',
             },
             {
               pattern:
