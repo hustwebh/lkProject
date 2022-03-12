@@ -1,26 +1,25 @@
 // import React from 'react';
-import { Card } from 'antd';
+import { Row, Col } from 'antd';
+import { Link } from 'react-router-dom';
+import { CheckCard } from '@ant-design/pro-card';
 import symbol from '@/assets/favicon.png';
+import { Typography } from 'antd';
+import logo from '@/assets/favicon1.png';
 
-const Patient = (props:any) => {
-  const { Meta } = Card;
+const { Paragraph } = Typography;
 
-  const changePage = (e:any)=>{
-    console.log(e)
-  }
+const PatientCard = (props: any) => {
+  const { patientMsg } = props;
+  console.log(patientMsg);
 
   return (
-    // <div>Patient</div>
-    <Card
-      hoverable
-      // style={{ width: 240 }}
-      cover={<img alt="example" src={symbol} />}
-      onClick = {changePage}
-    >
-      <Meta title={props.name} />
-    </Card>
-  )
-}
+    <CheckCard
+      style={{ height: 120 }}
+      avatar={logo}
+      title={patientMsg.name}
+      description={`病人注册时间${patientMsg.create_time},更多信息点击进入详情页面`}
+    />
+  );
+};
 
-
-export default Patient;
+export default PatientCard;

@@ -1,4 +1,6 @@
+import React, { useEffect } from 'react';
 import { connect } from 'dva';
+import PatientCard from '@/components/Patient/index';
 import style from './index.less';
 
 interface mainContentProps {
@@ -7,14 +9,32 @@ interface mainContentProps {
 }
 
 const MainContent: any = (props: any) => {
-  return <div className={style.rightContent}>各个菜单界面</div>;
+  const { dispatch, PatientList } = props;
+  console.log('PatientList', PatientList);
+
+  useEffect(() => {
+    dispatch({
+      type: 'mainContent/getPatientList',
+    });
+  }, [1]);
+
+  return (
+    <div className={style.rightContent}>
+      <div className={style.cardsContent}>
+        {PatientList.map((item: object) => {
+          return <PatientCard patientMsg={item} />;
+        })}
+      </div>
+    </div>
+  );
 };
 
 // MainContent.wrappers = ['@/wrappers/auth'];
 
-const mapStateToProps = ({ mainPage }: { mainPage: any }) => {
+const mapStateToProps = ({ mainContent }: { mainContent: any }) => {
+  const { PatientList } = mainContent;
   return {
-    MainPage: mainPage,
+    PatientList,
   };
 };
 

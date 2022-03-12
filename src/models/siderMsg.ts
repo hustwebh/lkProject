@@ -44,7 +44,7 @@ const Model: SiderMsgType = {
       //   email: "111@qq.com",
       //   id_card: "111",
       //   phone: "111",
-      //   hospital_id: 1,
+      //   hospital_name: '武汉市第一人民医院',
       //   role_id: 1,
       //   creat_time: '1',
       // }

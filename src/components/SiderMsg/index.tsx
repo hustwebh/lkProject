@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { Divider, Avatar, Image } from 'antd';
+import Doctorlogo from '@/assets/doctor.png';
+import Nurselogo from '@/assets/nurse.png';
 import './index.css';
 
 const PeopleMsg = (props: any) => {
@@ -24,39 +26,35 @@ const PeopleMsg = (props: any) => {
         marginLeft: 20,
       }}
     >
-      <Avatar
-        style={{
-          color: '#f56a00',
-          backgroundColor: '#fde3cf',
-        }}
-        size={48}
-      >
-        U
-      </Avatar>
+      {siderMsg.role_id === 1 ? (
+        <Avatar size={75} src={Doctorlogo} className="SiderAvatar" />
+      ) : (
+        <Avatar size={75} src={Nurselogo} className="SiderAvatar" />
+      )}
       <Divider />
-      <p>
-        <span>姓名：</span>
-        {siderMsg.name}
+      <p className="msgShow">
+        <span>姓名:</span>
+        <div>{siderMsg.name}</div>
       </p>
       <Divider />
-      <p>
-        <span>性别：</span>
-        {siderMsg.gender}
+      <p className="msgShow">
+        <span>性别:</span>
+        <div>{siderMsg.gender}</div>
       </p>
       <Divider />
-      <p>
-        <span>电话：</span>
-        {siderMsg.phone}
+      <p className="msgShow">
+        <span>电话:</span>
+        <div>{siderMsg.phone}</div>
       </p>
       <Divider />
-      <p>
-        <span>邮箱：</span>
-        {siderMsg.email}
+      <p className="msgShow">
+        <span>邮箱:</span>
+        <div>{siderMsg.email}</div>
       </p>
       <Divider />
-      <p>
-        <span>工作单位：</span>
-        {siderMsg.hospital_name}
+      <p className="msgShow">
+        <span>工作单位:</span>
+        <div>{siderMsg.hospital_name}</div>
       </p>
       <Divider />
     </div>

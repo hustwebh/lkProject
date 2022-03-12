@@ -7,3 +7,20 @@
   justify-content: center;
   align-items: center;
 }
+.SiderAvatar{
+  margin-top: 20px;
+}
+.msgShow {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.msgShow span {
+  width: 35%;
+  text-align: right;
+}
+.msgShow div {
+  width: 60%;
+  text-align: left;
+}

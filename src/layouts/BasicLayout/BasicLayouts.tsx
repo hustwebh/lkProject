@@ -77,7 +77,6 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
   const tmpuuid = 'bfd34afd-f97a9f7c-c0551428-93a0c48a-0285c8ce';
   useEffect(() => {
-    console.log(pathname);
     if (pathname.indexOf('?') === -1) {
       //不是在病人详情界面
       dispatch({
