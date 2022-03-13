@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'dva';
+import { CheckCard } from '@ant-design/pro-card';
 import PatientCard from '@/components/Patient/index';
 import style from './index.less';
 
@@ -10,7 +11,6 @@ interface mainContentProps {
 
 const MainContent: any = (props: any) => {
   const { dispatch, PatientList } = props;
-  console.log('PatientList', PatientList);
 
   useEffect(() => {
     dispatch({
@@ -21,9 +21,11 @@ const MainContent: any = (props: any) => {
   return (
     <div className={style.rightContent}>
       <div className={style.cardsContent}>
-        {PatientList.map((item: object) => {
-          return <PatientCard patientMsg={item} />;
-        })}
+        <CheckCard.Group>
+          {PatientList.map((item: object) => {
+            return <PatientCard patientMsg={item} />;
+          })}
+        </CheckCard.Group>
       </div>
     </div>
   );

@@ -11,10 +11,10 @@ const { Paragraph } = Typography;
 
 const PatientCard = (props: any) => {
   const { patientMsg } = props;
-  console.log(patientMsg);
 
   return (
     <CheckCard
+      value={patientMsg.patient_id}
       style={{ height: 110 }}
       avatar={patientMsg.gender === '男' ? manlogo : womanlogo}
       title={`姓名:  ${patientMsg.name}`}
@@ -24,7 +24,6 @@ const PatientCard = (props: any) => {
           <br />
           联系电话:{patientMsg.phone}
         </span>
-        // `性别:${patientMsg.gender}联系电话:${patientMsg.phone}`
       }
     />
   );

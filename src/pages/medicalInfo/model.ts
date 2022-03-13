@@ -1,25 +1,22 @@
-import { getPatientList } from './service';
+import { getPatientList, submitMedicalMsg } from './service';
 import { message } from 'antd';
 import { Reducer, Effect } from 'umi';
 
-interface mainContentType {
-  namespace: 'mainContent';
-  state: {
-    PatientList: [];
-  };
+interface medicalInfoType {
+  namespace: 'medicalInfo';
+  state: {};
   effects: {
     getPatientList: Effect;
+    submitMedicalInfo: Effect;
   };
   reducers: {
     savePatientList: Reducer;
   };
 }
 
-const Model: mainContentType = {
-  namespace: 'mainContent',
-  state: {
-    PatientList: [],
-  },
+const Model: medicalInfoType = {
+  namespace: 'medicalInfo',
+  state: {},
 
   effects: {
     *getPatientList({ payload }, { call, put }) {
@@ -84,10 +81,19 @@ const Model: mainContentType = {
           phone: '18614844625',
         },
       ];
+
       yield put({
         type: 'savePatientList',
         payload: data,
       });
+    },
+    *submitMedicalInfo({ payload }, { call, put }) {
+      const { errno } = yield call(submitMedicalMsg, payload);
+      if (errno === 200) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
 

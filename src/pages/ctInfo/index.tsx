@@ -36,9 +36,9 @@ const CTInfo: React.FC<CTInfoProps> = (props) => {
   const [patientVal, setpatientVal] = useState(undefined);
   const [currPage, setCurrPage] = useState(1);
 
-  const handleOk = () => {
-    setVisible(false);
-  };
+  // const handleOk = () => {
+  //   setVisible(false);
+  // };
 
   useEffect(() => {
     dispatch({
@@ -93,7 +93,6 @@ const CTInfo: React.FC<CTInfoProps> = (props) => {
       <Modal
         title="请选择病人信息"
         visible={visible}
-        onOk={handleOk}
         onCancel={() => {
           setVisible(false);
         }}

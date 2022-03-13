@@ -6,7 +6,6 @@ import './index.css';
 
 const PeopleMsg = (props: any) => {
   const { siderMsg, hospitalList } = props;
-  console.log('siderMsg', siderMsg);
   // console.log('hospitalList', hospitalList);
   // const { role_id } = siderMsg;
   const roles = ['医生', '护士', '管理员'];

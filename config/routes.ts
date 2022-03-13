@@ -1,7 +1,7 @@
 const routerConfig = [
   {
     path: '/user',
-    // component: '@/layouts/Userlayout/Userlayouts',
+    component: '@/layouts/Userlayout/Userlayouts',
     routes: [
       {
         path: '/user/login',
@@ -16,7 +16,7 @@ const routerConfig = [
   {
     path: '/',
     component: '@/layouts/BasicLayout/BasicLayouts',
-    // wrappers: ['@/wrappers/auth'],
+    wrappers: ['@/wrappers/auth'],
     routes: [
       {
         path: '/',
@@ -27,8 +27,8 @@ const routerConfig = [
         component: '@/pages/basicInfo/index',
       },
       {
-        path: '/doctorInfo',
-        component: '@/pages/doctorInfo/index',
+        path: '/medicalInfo',
+        component: '@/pages/medicalInfo/index',
       },
       {
         path: '/ctInfo',
