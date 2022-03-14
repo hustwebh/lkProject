@@ -165,6 +165,7 @@ const PatientMedicalForm = (props: any) => {
 
   return (
     <Form
+      style={{ width: '80%', marginLeft: '30%', marginTop: '1%' }}
       {...layout}
       labelAlign="right"
       size="large"
@@ -267,18 +268,24 @@ const BasicInfo = (props: any) => {
           patientMsgHandler={patientMsgHandler}
         />
       </div>
-      <Divider orientation="left">病人诊疗信息填报</Divider>
+      {/* <Divider orientation="left">病人诊疗信息填报</Divider> */}
       <div className={style.PatientList}>
         {editableMsg.length ? (
-          <div>
-            <span style={{ fontSize: 20 }}>
-              请完成对{editableMsg[0].name}的诊疗信息填报:
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <span style={{ fontSize: 20, marginTop: '2%' }}>
+              病人姓名：{editableMsg[0].name}
             </span>
             <br />
             <PatientMedicalForm submitMedicalMsg={submitMedicalMsg} />
           </div>
         ) : (
-          <div>请先选择病人进行信息上报！</div>
+          <div>{/* 请先选择病人进行信息上报！ */}</div>
         )}
       </div>
     </div>
