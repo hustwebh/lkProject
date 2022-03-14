@@ -34,7 +34,7 @@ export type Member = {
 const SelectPatientModal = (props: any) => {
   const { PatientList, patientMsgHandler } = props;
 
-  const [visible, setvisible] = useState(false);
+  const [visible, setvisible] = useState(true);
 
   const tableListDataSource: Member[] = [];
 
@@ -90,7 +90,7 @@ const SelectPatientModal = (props: any) => {
 
   return (
     <>
-      <Button
+      {/* <Button
         style={{ height: 45, marginTop: 15, marginLeft: 20 }}
         type="primary"
         onClick={() => {
@@ -98,7 +98,7 @@ const SelectPatientModal = (props: any) => {
         }}
       >
         添加病人信息
-      </Button>
+      </Button> */}
 
       <Modal
         title="选择病人信息"
@@ -220,7 +220,7 @@ const PatientMedicalForm = (props: any) => {
 
       <Form.Item {..._tailLayout} style={{ marginTop: 10 }}>
         <Button type="primary" htmlType="submit" style={{ width: '30%' }}>
-          确认上传
+          提交
         </Button>
       </Form.Item>
     </Form>
@@ -270,7 +270,9 @@ const BasicInfo = (props: any) => {
       <div className={style.PatientList}>
         {editableMsg.length ? (
           <div>
-            请完成对{editableMsg[0].name}的诊疗信息填报:
+            <span style={{ fontSize: 20 }}>
+              请完成对{editableMsg[0].name}的诊疗信息填报:
+            </span>
             <br />
             <PatientMedicalForm submitMedicalMsg={submitMedicalMsg} />
           </div>
