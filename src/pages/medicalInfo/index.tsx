@@ -116,6 +116,7 @@ const SelectPatientModal = (props: any) => {
           rowKey={setRowKey}
           pagination={{
             showQuickJumper: true,
+            pageSize: 8,
           }}
           toolBarRender={false}
           search={false}
