@@ -24,7 +24,7 @@ import { history } from 'umi';
 import { PreProcess } from '@/pages/detect/service';
 import TextArea from 'antd/es/input/TextArea';
 
-const PAGE_SIZE = 18;
+const PAGE_SIZE = 8;
 
 type CTInfoProps = {
   dispatch: Dispatch;
