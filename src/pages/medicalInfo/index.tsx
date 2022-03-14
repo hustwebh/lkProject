@@ -253,7 +253,9 @@ const BasicInfo = (props: any) => {
       },
     }).then((res: boolean) => {
       if (res) {
-        message.success('诊疗信息上传成功'), setEditableMsg([]);
+        message.success('诊疗信息上传成功');
+        setEditableMsg([]);
+        window.location.href = '/';
       } else {
         message.error('上传失败，请重试');
       }

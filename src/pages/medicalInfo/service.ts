@@ -11,8 +11,7 @@ export async function getPatientList() {
 }
 
 export async function submitMedicalMsg(body: any) {
-  console.log(body);
-  return request(`${SERVICEURL}/addtreatmsg`, {
+  return request(`${SERVICEURL}/api/v1/treatment`, {
     method: 'POST',
     body,
     requestType: 'form',
