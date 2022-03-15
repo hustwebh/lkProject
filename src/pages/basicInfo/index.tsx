@@ -10,14 +10,34 @@ import {
 } from 'antd';
 import style from './index.less';
 import { Link, history } from 'umi';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import request from 'umi-request';
+import { SERVICEURL } from '@/utils/const';
 
 const BasicInfo = (props: any) => {
   const { dispatch } = props;
   const { Option } = Select;
+  // const [doctors,setDoctors] = useState([]);
+  const doctors: string[] = [];
   const [selectDoctors, setSelectDoctors] = useState(false);
-
-  const doctors = ['张华', '汪伟', '沈明', '董磊', '熊磊', '张超', '王琦'];
+  useEffect(() => {
+    if (localStorage.getItem('role_id') === '1') {
+      dispatch({
+        type: 'basicInfo/getLoginMsg',
+      }).then((res: any) => {
+        doctors.push(res.name);
+      });
+      setSelectDoctors(true);
+    } else {
+      dispatch({
+        type: 'basicInfo/getDoctorList',
+      }).then((res: any[]) => {
+        for (let value of res) {
+          doctors.push(value.name);
+        }
+      });
+    }
+  }, [1]);
 
   const layout = {
     labelCol: {
@@ -40,7 +60,16 @@ const BasicInfo = (props: any) => {
     },
   };
 
-  const onFinish = () => {};
+  const onFinish = (values: any) => {
+    dispatch({
+      type: 'basicInfo/SubmitBasicInfo',
+      payload: values,
+    }).then((res: boolean) => {
+      if (res) {
+        message.success('上传成功！');
+      }
+    });
+  };
 
   const onFinishFailed = () => {};
 
@@ -156,8 +185,8 @@ const BasicInfo = (props: any) => {
           ]}
         >
           <Radio.Group>
+            <Radio value={0}>未婚</Radio>
             <Radio value={1}>已婚</Radio>
-            <Radio value={2}>未婚</Radio>
           </Radio.Group>
         </Form.Item>
 
