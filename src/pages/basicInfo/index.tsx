@@ -10,6 +10,7 @@ import {
 } from 'antd';
 import style from './index.less';
 import { Link, history } from 'umi';
+import { connect } from 'dva';
 import { useState, useEffect } from 'react';
 import request from 'umi-request';
 import { SERVICEURL } from '@/utils/const';
@@ -67,6 +68,7 @@ const BasicInfo = (props: any) => {
     }).then((res: boolean) => {
       if (res) {
         message.success('上传成功！');
+        history.push('/');
       }
     });
   };
@@ -238,4 +240,4 @@ const BasicInfo = (props: any) => {
   );
 };
 
-export default BasicInfo;
+export default connect(() => {})(BasicInfo);
