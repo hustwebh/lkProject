@@ -18,15 +18,15 @@ import { SERVICEURL } from '@/utils/const';
 const BasicInfo = (props: any) => {
   const { dispatch } = props;
   const { Option } = Select;
-  // const [doctors,setDoctors] = useState([]);
-  const doctors: string[] = [];
+  const [doctors, setDoctors] = useState<any>([]);
+  // const doctors: string[] = [];
   const [selectDoctors, setSelectDoctors] = useState(false);
   useEffect(() => {
-    if (localStorage.getItem('role_id') === '1') {
+    if (localStorage.getItem('roles') === '1') {
       dispatch({
         type: 'basicInfo/getLoginMsg',
       }).then((res: any) => {
-        doctors.push(res.name);
+        setDoctors([...doctors, res.name]);
       });
       setSelectDoctors(true);
     } else {
@@ -34,7 +34,7 @@ const BasicInfo = (props: any) => {
         type: 'basicInfo/getDoctorList',
       }).then((res: any[]) => {
         for (let value of res) {
-          doctors.push(value.name);
+          setDoctors([...doctors, value.name]);
         }
       });
     }
@@ -224,7 +224,8 @@ const BasicInfo = (props: any) => {
             disabled={selectDoctors}
             defaultValue={0}
           >
-            {doctors.map((item, index) => {
+            {doctors.map((item: string, index: number) => {
+              console.log('123', item, index);
               return <Option value={index}>{item}</Option>;
             })}
           </Select>
