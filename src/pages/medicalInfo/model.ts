@@ -88,8 +88,8 @@ const Model: medicalInfoType = {
       // });
     },
     *submitMedicalInfo({ payload }, { call, put }) {
-      const { errno } = yield call(submitMedicalMsg, payload);
-      if (errno) {
+      const { code } = yield call(submitMedicalMsg, payload);
+      if (code === 200) {
         return true;
       } else {
         return false;
