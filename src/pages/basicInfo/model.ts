@@ -11,7 +11,9 @@ interface basicInfoType {
     getLoginMsg: Effect;
     getDoctorList: Effect;
   };
-  reducers: {};
+  reducers: {
+    saveDoctors: Reducer;
+  };
 }
 
 const Model: basicInfoType = {
@@ -28,18 +30,44 @@ const Model: basicInfoType = {
     *getLoginMsg({ payload }, { call, put }) {
       const { code, data } = yield call(getLoginUserMsg);
       if (code === 200) {
-        return data;
+        yield put({
+          type: 'saveDoctors',
+          payload: data,
+        });
+        return true;
       }
+      // const data = [{ name: 'ayr', age: '18' },{ name: 'zyr', age: '18' }]
+      // yield put({
+      //   type: 'saveDoctors',
+      //   payload: data
+      // })
+      // return true;
     },
     *getDoctorList({ payload }, { call, put }) {
       const { code, data } = yield call(getDoctorList);
       if (code === 200) {
-        return data;
+        yield put({
+          type: 'saveDoctors',
+          payload: data,
+        });
+        return true;
       }
+      // const data = [{ name: 'ayr', age: '18' },{ name: 'zyr', age: '18' }]
+      // yield put({
+      //   type: 'saveDoctors',
+      //   payload: data
+      // })
     },
   },
 
-  reducers: {},
+  reducers: {
+    saveDoctors(state, { payload }) {
+      return {
+        ...state,
+        doctorsMsg: payload,
+      };
+    },
+  },
 };
 
 export default Model;

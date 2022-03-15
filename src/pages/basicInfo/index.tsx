@@ -13,29 +13,26 @@ import { Link, history } from 'umi';
 import { connect } from 'dva';
 import { useState, useEffect } from 'react';
 import request from 'umi-request';
-import { SERVICEURL } from '@/utils/const';
 
 const BasicInfo = (props: any) => {
-  const { dispatch } = props;
+  const { dispatch, doctorsMsg } = props;
+  console.log('doctorsMsg', doctorsMsg);
+
   const { Option } = Select;
   const [doctors, setDoctors] = useState<any>([]);
-  // const doctors: string[] = [];
   const [selectDoctors, setSelectDoctors] = useState(false);
+
+  let MsgChange: string[] = [];
+
   useEffect(() => {
     if (localStorage.getItem('roles') === '1') {
       dispatch({
         type: 'basicInfo/getLoginMsg',
-      }).then((res: any) => {
-        setDoctors([...doctors, res.name]);
       });
       setSelectDoctors(true);
     } else {
       dispatch({
         type: 'basicInfo/getDoctorList',
-      }).then((res: any[]) => {
-        for (let value of res) {
-          setDoctors([...doctors, value.name]);
-        }
       });
     }
   }, [1]);
@@ -224,10 +221,11 @@ const BasicInfo = (props: any) => {
             disabled={selectDoctors}
             defaultValue={0}
           >
-            {doctors.map((item: string, index: number) => {
-              console.log('123', item, index);
-              return <Option value={index}>{item}</Option>;
-            })}
+            {doctorsMsg
+              ? doctorsMsg.map((item: any, index: number) => {
+                  return <Option value={index}>{item.name}</Option>;
+                })
+              : null}
           </Select>
         </Form.Item>
 
@@ -241,4 +239,11 @@ const BasicInfo = (props: any) => {
   );
 };
 
-export default connect(() => {})(BasicInfo);
+const mapStateToProps = ({ basicInfo }: { basicInfo: any }) => {
+  const { doctorsMsg } = basicInfo;
+  return {
+    doctorsMsg,
+  };
+};
+
+export default connect(mapStateToProps)(BasicInfo);
