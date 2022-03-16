@@ -9,10 +9,9 @@ export default (props) => {
     // roles = typeof roles === 'string' ? [roles] : roles;
     // const isAuthorized = roles.indexOf('ROLE_ADMIN') !== -1;
     console.log('roles', roles);
-    if (roles === 1) {
+    if (roles) {
       return <div>{props.children}</div>;
     }
   }
-  console.log(123);
   return <Redirect to="/user/login" />;
 };
