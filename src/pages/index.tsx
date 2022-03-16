@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
 import { CheckCard } from '@ant-design/pro-card';
+import { Pagination } from 'antd';
 import PatientCard from '@/components/Patient/index';
 import style from './index.less';
 
@@ -11,6 +12,8 @@ interface mainContentProps {
 
 const MainContent: any = (props: any) => {
   const { dispatch, PatientList } = props;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPageSize, setCurrentPageSize] = useState(24);
 
   useEffect(() => {
     dispatch({
@@ -18,14 +21,35 @@ const MainContent: any = (props: any) => {
     });
   }, [1]);
 
+  const handleChange = (page: number, pageSize: number) => {
+    // console.log(page, pageSize);
+    if (page > 0) {
+      setCurrentPage(page);
+      setCurrentPageSize(pageSize);
+    } else {
+      setCurrentPage(1);
+    }
+  };
+
   return (
     <div className={style.rightContent}>
       <div className={style.cardsContent}>
         <CheckCard.Group>
-          {PatientList.map((item: object) => {
+          {PatientList.slice(
+            (currentPage - 1) * currentPageSize,
+            (currentPage - 1) * currentPageSize + currentPageSize,
+          ).map((item: object) => {
             return <PatientCard patientMsg={item} />;
           })}
         </CheckCard.Group>
+        <Pagination
+          showQuickJumper={true}
+          pageSizeOptions={['12', '16', '20', '24']}
+          defaultCurrent={currentPage}
+          defaultPageSize={currentPageSize}
+          onChange={handleChange}
+          total={PatientList.length}
+        />
       </div>
     </div>
   );
