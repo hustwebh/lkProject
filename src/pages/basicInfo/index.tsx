@@ -191,7 +191,7 @@ const BasicInfo = (props: any) => {
 
         <Form.Item
           label="是否有过肾疾病史"
-          name="kidney_ill_defore"
+          name="kidney_ill_before"
           style={{ marginBottom: 0 }}
           rules={[
             {

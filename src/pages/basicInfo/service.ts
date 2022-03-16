@@ -4,7 +4,7 @@ import { SERVICEURL } from '@/utils/const';
 export async function SubmitBasicInfo(body: any) {
   return request(`${SERVICEURL}/api/v1/patient`, {
     method: 'POST',
-    body,
+    data: body.payload,
     requestType: 'form',
     headers: {
       token: localStorage.getItem('token'),

@@ -14,7 +14,7 @@ export async function getPatientList() {
 export async function submitMedicalMsg(body: any) {
   return request(`${SERVICEURL}/api/v1/treatment`, {
     method: 'POST',
-    body,
+    data: body,
     requestType: 'form',
     headers: {
       token: localStorage.getItem('token'),
