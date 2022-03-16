@@ -32,7 +32,7 @@ const Model: basicInfoType = {
       if (code === 200) {
         yield put({
           type: 'saveDoctors',
-          payload: data,
+          payload: [data],
         });
         return true;
       }
