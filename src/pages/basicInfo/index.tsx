@@ -117,12 +117,12 @@ const BasicInfo = (props: any) => {
           rules={[
             {
               required: true,
-              message: '请输入邮箱!',
-            },
-            {
-              type: 'number',
               message: '请输入正确的年龄!',
             },
+            // {
+            //   type: 'number',
+            //   message: '请输入正确的年龄!',
+            // },
           ]}
         >
           <Input size="large" className={style.email} autoComplete="off" />
