@@ -7,7 +7,7 @@ import type { Reducer, Effect } from 'umi';
 import { message } from 'antd';
 
 import { GetPatientList, GetCTUrl, FetchImg } from './service';
-import request from 'umi-request';
+import request from '@/utils/request';
 import { SERVICEURL } from '@/utils/const';
 
 export type StateType = {
@@ -51,29 +51,30 @@ const Model: ModelType = {
       // 当前 Instances 渲染左侧侧边栏
       const data = yield call(GetCTUrl, payload);
       console.log('model', data);
-      const fetchImgList = data.data.map((item) => {
-        // const imgData = yield call();
-        return new Promise((resolve) => {
-          const imgData = request(`${SERVICEURL}/api/v1/ct`, {
-            method: 'get',
-            headers: {
-              token: localStorage.getItem('token'),
-            },
-            params: {
-              url: item,
-            },
-          });
+      const fetchImgList = data.data.map((item: any) => {
+        //   // const imgData = yield call();
+        //   return new Promise((resolve) => {
+        //     const imgData = request(`${SERVICEURL}/api/v1/ct`, {
+        //       method: 'get',
+        //       headers: {
+        //         token: localStorage.getItem('token'),
+        //       },
+        //       params: {
+        //         url: item,
+        //       },
+        //     });
 
-          resolve(imgData);
-        });
+        //     resolve(imgData);
+        //   });
+        return item.replace(/dicom/, 'kidney_seg_result/origin_png') + '.png';
       });
 
-      const imgLists = yield Promise.all(fetchImgList);
-      console.log('fetch imgList ', imgLists);
+      // const imgLists = yield Promise.all(fetchImgList);
+      console.log('fetch imgList ', fetchImgList);
 
       yield put({
         type: 'save',
-        payload: { imgLists: imgLists },
+        payload: { imgLists: fetchImgList },
       });
     },
   },

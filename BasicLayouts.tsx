@@ -445,8 +445,6 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
   // 头像下拉菜单
   const menu = (
     <Menu>
-      <Menu.Item>{/* <ChangeNicknameModal /> */}</Menu.Item>
-      <Menu.Item>{/* <ChangePasswordModal /> */}</Menu.Item>
       <Menu.Item>
         <a
           onClick={() => {

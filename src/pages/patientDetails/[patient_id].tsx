@@ -95,6 +95,7 @@ const CTMsgList = (props: any) => {
                       display: 'inline-block',
                       margin: '10px',
                     }}
+                    key={index}
                   >
                     <Image
                       preview={false}
@@ -202,6 +203,7 @@ const patientDetails = (props: any) => {
       type: 'PatientMsg/CTMsg',
       payload: query,
     });
+    setTimeout(() => console.log(props), 2000);
     console.log(props);
   }, []);
 

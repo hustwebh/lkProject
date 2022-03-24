@@ -65,7 +65,7 @@ const CTInfo: React.FC<CTInfoProps> = (props) => {
       key: 'action',
       width: 120,
       render: (text: any, record: any) => {
-        console.log(record.patient_id);
+        // console.log(record.patient_id);
         return (
           <Space size="middle">
             <Button
@@ -129,13 +129,14 @@ const CTInfo: React.FC<CTInfoProps> = (props) => {
                 {ctInfo.imgLists
                   ? ctInfo.imgLists
                       .slice(PAGE_SIZE * (currPage - 1), PAGE_SIZE * currPage)
-                      .map((item, index) => {
+                      .map((item: any, index: any) => {
                         return (
                           <div
                             style={{
                               display: 'inline-block',
                               margin: '10px',
                             }}
+                            key={index}
                           >
                             <Image
                               preview={false}
