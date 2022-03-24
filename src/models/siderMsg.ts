@@ -41,30 +41,30 @@ const Model: SiderMsgType = {
       }
     },
     *patientMsg({ payload }, { call, put }) {
-      // const { code, data } = yield call(getPatientMsg, payload);
-      // if(code===200) {
-      //   yield put({
-      //     type: 'saveSiderMsg',
-      //     payload: data,
-      //   })
-      // }
-      const data = {
-        address: '河南省郑州市金雀路103号',
-        age: 25,
-        create_time: '2021-10-14 21:00:04',
-        doctor_id: 2,
-        gender: '男',
-        id_card: '412726198708042412',
-        kidney_ill_before: '1',
-        married: '0',
-        name: '王华',
-        patient_id: 1,
-        phone: '13893990715',
-      };
-      yield put({
-        type: 'saveSiderMsg',
-        payload: data,
-      });
+      const { code, data } = yield call(getPatientMsg, payload);
+      if (code === 200) {
+        yield put({
+          type: 'saveSiderMsg',
+          payload: data,
+        });
+      }
+      // const data = {
+      //   "authorize_code": null,
+      //   "create_time": "2022-03-05 21:14:13",
+      //   "email": "1324598012@qq.com",
+      //   "gender": "男",
+      //   "hospital_name": "湖北省第三人民医院",
+      //   "id_card": "412826199608185215",
+      //   "medical_user_id": 1,
+      //   "name": "张华",
+      //   "phone": "13866666666",
+      //   "role_id": 1,
+      //   "role_name": "医生"
+      // };
+      // yield put({
+      //   type: 'saveSiderMsg',
+      //   payload: data,
+      // });
     },
     *hospitalList({ payload }, { call, put }) {
       const { code, data } = yield call(getHospitalList, payload);

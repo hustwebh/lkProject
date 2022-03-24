@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Tooltip, Card, Tag, Space, Pagination, Image } from 'antd';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  Button,
+  Tooltip,
+  Card,
+  Tag,
+  Space,
+  Pagination,
+  Image,
+  Input,
+} from 'antd';
 import ProList from '@ant-design/pro-list';
-import type { ProColumns } from '@ant-design/pro-table';
-import { EditableProTable } from '@ant-design/pro-table';
-import { ProFormRadio, ProFormField } from '@ant-design/pro-form';
-import ProCard from '@ant-design/pro-card';
+import ProDescriptions from '@ant-design/pro-descriptions';
 import { connect } from 'dva';
 import { history } from 'umi';
+
 const PAGE_SIZE = 8;
 const TreatmentMsgList = (props: any) => {
   const { PatientTreatment } = props;
@@ -34,16 +41,24 @@ const TreatmentMsgList = (props: any) => {
         description: {
           dataIndex: 'record',
         },
-        // subTitle: {
-        //   render: () => {
-        //     return (
-        //       <Space size={0}>
-        //         <Tag color="blue">Ant Design</Tag>
-        //         <Tag color="#5BD8A6">TechUI</Tag>
-        //       </Space>
-        //     );
-        //   },
-        // },
+        subTitle: {
+          editable: false,
+          render: (_, record) => {
+            return (
+              <div>
+                {record.operation ? (
+                  <Tag color="blue">已手术</Tag>
+                ) : (
+                  <Tag color="red">未进行手术</Tag>
+                )}
+              </div>
+              // <Space size={0}>
+              //   <Tag color="blue">Ant Design</Tag>
+              //   <Tag color="#5BD8A6">TechUI</Tag>
+              // </Space>
+            );
+          },
+        },
         actions: {
           render: (text, row, index, action) => [
             <a
@@ -129,27 +144,90 @@ const CTMsgList = (props: any) => {
 
 const BasicMsgList = (props: any) => {
   const { PatientBasicMsg } = props;
-  // console.log('PatientBasicMsg', PatientBasicMsg);
-  if (PatientBasicMsg === undefined) return <div></div>;
+  console.log('PatientBasicMsg', PatientBasicMsg);
+  const actionRef = useRef();
   return (
-    <div>
-      姓名：{PatientBasicMsg.name}
-      <br />
-      性别：{PatientBasicMsg.gender}
-      <br />
-      年龄：{PatientBasicMsg.age}
-      <br />
-      手机号：{PatientBasicMsg.phone}
-      <br />
-      地址：{PatientBasicMsg.address}
-      <br />
-      是否已婚：{PatientBasicMsg.married === '1' ? '是' : '否'}
-      <br />
-      是否患过肾脏疾病：
-      {PatientBasicMsg.kidney_ill_before === '1' ? '是' : '否'}
-      <br />
-      哈哈
-    </div>
+    <ProDescriptions
+      actionRef={actionRef}
+      title="病人基本信息"
+      column={2}
+      request={async () => {
+        return Promise.resolve({
+          success: true,
+          data: PatientBasicMsg,
+        });
+      }}
+      editable={{}}
+      columns={[
+        {
+          title: '姓名',
+          key: 'name',
+          dataIndex: 'name',
+          span: 2,
+        },
+        {
+          title: '地址',
+          key: 'address',
+          dataIndex: 'address',
+          copyable: true,
+          span: 2,
+          // ellipsis: true,
+          editable: false,
+        },
+        {
+          title: '联系电话',
+          key: 'phone',
+          dataIndex: 'phone',
+          span: 2,
+          copyable: true,
+        },
+        {
+          title: '身份证帐号',
+          key: 'id_card',
+          dataIndex: 'id_card',
+          editable: false,
+          copyable: true,
+        },
+        {
+          title: '性别',
+          key: 'gender',
+          dataIndex: 'gender',
+          editable: false,
+        },
+        {
+          title: '手术史情况',
+          key: 'kidney_ill_before',
+          dataIndex: 'kidney_ill_before',
+          valueEnum: {
+            '0': {
+              text: '无手术记录',
+              status: 'Success',
+            },
+            '1': {
+              text: '有手术记录',
+              status: 'warning',
+            },
+          },
+        },
+        {
+          title: '婚姻状况',
+          key: 'married',
+          dataIndex: 'married',
+        },
+        {
+          title: '年龄',
+          key: 'age',
+          dataIndex: 'age',
+          valueType: 'string',
+        },
+        {
+          title: '信息注册时间',
+          key: 'create_time',
+          dataIndex: 'create_time',
+          valueType: 'date',
+        },
+      ]}
+    ></ProDescriptions>
   );
 };
 
