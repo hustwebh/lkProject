@@ -11,7 +11,7 @@ interface mainContentProps {
 }
 
 const MainContent: any = (props: any) => {
-  const { dispatch, PatientList } = props;
+  const { dispatch, PatientList, history } = props;
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageSize, setCurrentPageSize] = useState(24);
 
@@ -31,10 +31,15 @@ const MainContent: any = (props: any) => {
     }
   };
 
+  const ChangeHandler = (clickTarget: any) => {
+    console.log(clickTarget, PatientList[clickTarget].patient_id);
+    // history.push(`/patientDetails/?patient_id=${PatientList[clickTarget].patient_id}`)
+  };
+
   return (
     <div className={style.rightContent}>
       <div className={style.cardsContent}>
-        <CheckCard.Group>
+        <CheckCard.Group onChange={ChangeHandler}>
           {PatientList.slice(
             (currentPage - 1) * currentPageSize,
             (currentPage - 1) * currentPageSize + currentPageSize,

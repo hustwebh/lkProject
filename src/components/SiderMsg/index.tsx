@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Divider, Avatar, Image } from 'antd';
 import Doctorlogo from '@/assets/doctor.png';
 import Nurselogo from '@/assets/nurse.png';
+import MalePatient from '@/assets/man.png';
+import FamalePatient from '@/assets/woman.png';
 import './index.css';
 
 const PeopleMsg = (props: any) => {
@@ -25,11 +27,20 @@ const PeopleMsg = (props: any) => {
         marginLeft: 20,
       }}
     >
-      {siderMsg.role_id === 1 ? (
-        <Avatar size={75} src={Doctorlogo} className="SiderAvatar" />
-      ) : (
-        <Avatar size={75} src={Nurselogo} className="SiderAvatar" />
-      )}
+      {siderMsg.role_id ? (
+        siderMsg.role_id === 1 ? (
+          <Avatar size={75} src={Doctorlogo} className="SiderAvatar" />
+        ) : (
+          <Avatar size={75} src={Nurselogo} className="SiderAvatar" />
+        )
+      ) : null}
+      {siderMsg.patient_id ? (
+        siderMsg.gender === '男' ? (
+          <Avatar size={75} src={MalePatient} className="SiderAvatar" />
+        ) : (
+          <Avatar size={75} src={FamalePatient} className="SiderAvatar" />
+        )
+      ) : null}
       <Divider />
       <p className="msgShow">
         <span>姓名:</span>

@@ -13,6 +13,16 @@ const routerConfig = [
       },
     ],
   },
+  // {
+  //   path: '/patientDetails',
+  //   component: '@/layouts/BasicLayout/BasicLayouts',
+  //   routes: [
+  //     {
+  //       path: '/patientDetails/:?patient_id',
+  //       component: '@/pages/patientDetails/[patient_id].tsx'
+  //     },
+  //   ],
+  // },
   {
     path: '/',
     component: '@/layouts/BasicLayout/BasicLayouts',
@@ -41,6 +51,10 @@ const routerConfig = [
       {
         path: '/staffManage',
         component: '@/pages/staffManage/index',
+      },
+      {
+        path: '/patientDetails',
+        component: '@/pages/patientDetails/[patient_id].tsx',
       },
     ],
   },

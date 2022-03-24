@@ -64,20 +64,14 @@ interface BasicLayoutsContentProps {
 }
 
 const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
-  const {
-    dispatch,
-    location,
-    siderMsg,
-    hospitalList,
-    uuid, // 在登录的时候获取
-  } = props;
+  const { dispatch, location, siderMsg } = props;
 
-  const { pathname } = location;
+  const { pathname, query } = location;
   const [loading, setLoading] = useState(false);
 
   const tmpuuid = 'bfd34afd-f97a9f7c-c0551428-93a0c48a-0285c8ce';
   useEffect(() => {
-    if (pathname.indexOf('?') === -1) {
+    if (pathname !== '/patientDetails') {
       //不是在病人详情界面
       dispatch({
         type: 'SiderMsg/loginUserMsg',
@@ -87,11 +81,12 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
       // });
     } else {
       dispatch({
-        type: 'SiderMsg/PatientMsg',
+        type: 'SiderMsg/patientMsg',
+        payload: query,
       });
     }
     return () => {};
-  }, [1]);
+  }, [pathname]);
 
   // useEffect(() => {
   //   if (sound_list) {
@@ -522,7 +517,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
         <Layout style={{ backgroundColor: '#343434' }}>
           <Sider className="side" width={350}>
-            <PeopleMsg siderMsg={siderMsg} hospitalList={hospitalList} />
+            <PeopleMsg siderMsg={siderMsg} />
           </Sider>
           <Content className="main-content">{props.children}</Content>
         </Layout>

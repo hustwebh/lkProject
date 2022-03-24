@@ -8,7 +8,6 @@ export default (props) => {
     let roles = JSON.parse(localStorage.getItem('roles'));
     // roles = typeof roles === 'string' ? [roles] : roles;
     // const isAuthorized = roles.indexOf('ROLE_ADMIN') !== -1;
-    console.log('roles', roles);
     if (roles) {
       return <div>{props.children}</div>;
     }
