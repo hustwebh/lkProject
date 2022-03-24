@@ -47,6 +47,9 @@ const errorHandler = (error: any) => {
 
 const request = extend({
   errorHandler,
+  headers: {
+    token: localStorage.getItem('token') + '',
+  },
   // 默认错误处理
   credentials: 'include', // 默认请求是否带上cookie
 });

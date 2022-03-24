@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Tooltip, Card, Tag, Space } from 'antd';
+import { Button, Tooltip, Card, Tag, Space, Pagination, Image } from 'antd';
 import ProList from '@ant-design/pro-list';
 import type { ProColumns } from '@ant-design/pro-table';
 import { EditableProTable } from '@ant-design/pro-table';
 import { ProFormRadio, ProFormField } from '@ant-design/pro-form';
 import ProCard from '@ant-design/pro-card';
 import { connect } from 'dva';
-
+import { history } from 'umi';
+const PAGE_SIZE = 8;
 const TreatmentMsgList = (props: any) => {
   const { PatientTreatment } = props;
 
@@ -63,13 +64,102 @@ const TreatmentMsgList = (props: any) => {
   );
 };
 
+const CTMsgList = (props: any) => {
+  const { PatientCTMsg } = props;
+  const [currPage, setCurrPage] = useState(1);
+
+  console.log('PatientCTMsg', PatientCTMsg);
+  return (
+    <div
+      style={{
+        padding: '10px',
+        margin: '20px 0 0 5px' /* marginLeft: '130px'  */,
+      }}
+    >
+      <Card
+        style={{ margin: '0 auto' }}
+        title="CT图像"
+        bodyStyle={{ padding: '12px' }}
+        headStyle={{ backgroundColor: '#39bbdb' }}
+        size="small"
+      >
+        <div style={{ flexWrap: 'wrap' }}>
+          {PatientCTMsg
+            ? PatientCTMsg.slice(
+                PAGE_SIZE * (currPage - 1),
+                PAGE_SIZE * currPage,
+              ).map((item: any, index: any) => {
+                return (
+                  <div
+                    style={{
+                      display: 'inline-block',
+                      margin: '10px',
+                    }}
+                  >
+                    <Image
+                      preview={false}
+                      style={{
+                        flex: 'none',
+                        display: 'inline-block',
+                      }}
+                      width={240}
+                      // src={`${DICOM_URL}/instances/${item.ID}/preview`}
+                      src={item}
+                      onClick={() => {
+                        history.push(`/detect?uuid=${item.ID}`);
+                      }}
+                    />
+                  </div>
+                );
+              })
+            : null}
+        </div>
+        <Pagination
+          current={currPage}
+          onChange={(e) => setCurrPage(e)}
+          total={PatientCTMsg.length}
+          pageSize={PAGE_SIZE}
+          style={{ textAlign: 'center' }}
+        />
+      </Card>
+    </div>
+  );
+};
+
 const BasicMsgList = (props: any) => {
   const { PatientBasicMsg } = props;
-  return <>{PatientBasicMsg}</>;
+  // console.log('PatientBasicMsg', PatientBasicMsg);
+  if (PatientBasicMsg === undefined) return <div></div>;
+  return (
+    <div>
+      姓名：{PatientBasicMsg.name}
+      <br />
+      性别：{PatientBasicMsg.gender}
+      <br />
+      年龄：{PatientBasicMsg.age}
+      <br />
+      手机号：{PatientBasicMsg.phone}
+      <br />
+      地址：{PatientBasicMsg.address}
+      <br />
+      是否已婚：{PatientBasicMsg.married === '1' ? '是' : '否'}
+      <br />
+      是否患过肾脏疾病：
+      {PatientBasicMsg.kidney_ill_before === '1' ? '是' : '否'}
+      <br />
+      哈哈
+    </div>
+  );
 };
 
 const patientDetails = (props: any) => {
-  const { dispatch, location, PatientTreatment, PatientBasicMsg } = props;
+  const {
+    dispatch,
+    location,
+    PatientTreatment,
+    PatientBasicMsg,
+    PatientCTMsg,
+  } = props;
   const { query } = location;
 
   const [activeTab, setActiveTab] = useState('BasicMessage');
@@ -92,7 +182,7 @@ const patientDetails = (props: any) => {
   const contentList: any = {
     BasicMessage: <BasicMsgList PatientBasicMsg={PatientBasicMsg} />,
     TreatmantMessage: <TreatmentMsgList PatientTreatment={PatientTreatment} />,
-    CTImages: <p>CTImages</p>,
+    CTImages: <CTMsgList PatientCTMsg={PatientCTMsg}></CTMsgList>,
   };
 
   const onTabChange = (key: string) => {
@@ -101,10 +191,19 @@ const patientDetails = (props: any) => {
 
   useEffect(() => {
     dispatch({
+      type: 'PatientMsg/BasicMsg',
+      payload: query,
+    });
+    dispatch({
       type: 'PatientMsg/TreatmentMsg',
       payload: query,
     });
-  }, [1]);
+    dispatch({
+      type: 'PatientMsg/CTMsg',
+      payload: query,
+    });
+    console.log(props);
+  }, []);
 
   return (
     <Card
@@ -121,10 +220,11 @@ const patientDetails = (props: any) => {
   );
 };
 function mapStateToProps({ PatientMsg }: { PatientMsg: any }) {
-  const { PatientTreatment, PatientBasicMsg } = PatientMsg;
+  const { PatientTreatment, PatientBasicMsg, PatientCTMsg } = PatientMsg;
   return {
     PatientTreatment,
     PatientBasicMsg,
+    PatientCTMsg,
   };
 }
 
