@@ -34,7 +34,7 @@ import TextArea from 'antd/es/input/TextArea';
 
 const { Sider, Content } = Layout;
 
-const DICOM_URL = 'http://27.17.30.150:20083';
+const DICOM_URL = 'https://guli-miler.oss-cn-beijing.aliyuncs.com';
 // Hook
 function usePrevious(value) {
   // The ref object is a generic container whose current property is mutable ...
@@ -215,7 +215,12 @@ const Detect: React.FC<DeteceProps> = (props) => {
               headStyle={{ backgroundColor: '#39bbdb' }}
               size="small"
             >
-              <Image src={`${DICOM_URL}/instances/${uuid}/preview`} />
+              {
+                // https://guli-miler.oss-cn-beijing.aliyuncs.com/kidney_seg_result/origin_png/7b23b6ca3e64400b91f825d94ed9f34f.dcm.png
+              }
+              <Image
+                src={`${DICOM_URL}/kidney_seg_result/origin_png/${uuid}.dcm.png`}
+              />
             </Card>
             <Card
               //   style={{ width: '300px', display: 'inline-block' }}

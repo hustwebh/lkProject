@@ -56,6 +56,14 @@ const routerConfig = [
         path: '/patientDetails',
         component: '@/pages/patientDetails/[patient_id].tsx',
       },
+      {
+        path: '/segInfo',
+        component: '@/pages/ctseg/index',
+      },
+      {
+        path: '/detect',
+        component: '@/pages/detect/index',
+      },
     ],
   },
 ];
