@@ -1,7 +1,6 @@
 import {
   getLoginUserMsg,
   getHospitalList,
-  getPatientMsg,
   getMainDoctorMsgByPatientId,
 } from '@/layouts/BasicLayout/service';
 import { message } from 'antd';
@@ -39,10 +38,11 @@ const Model: SiderMsgType = {
           type: 'saveSiderMsg',
           payload: data,
         });
+        return true;
       }
     },
     *mainDoctorMsg({ payload }, { call, put }) {
-      console.log('请求主治医生信息Model');
+      console.log('请求主治医生信息参数', payload);
       const { code, data } = yield call(getMainDoctorMsgByPatientId, payload);
       if (code === 200) {
         console.log('doctorMsg', data);

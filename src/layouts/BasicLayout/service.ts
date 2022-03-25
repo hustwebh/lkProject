@@ -2,6 +2,7 @@ import request from '@/utils/request';
 import { SERVICEURL } from '@/utils/const';
 
 export async function getLoginUserMsg() {
+  console.log('向后端发起登陆用户请求');
   return request(`${SERVICEURL}/api/v1/user`, {
     method: 'GET',
     // headers: {
@@ -20,7 +21,6 @@ export async function getHospitalList() {
 }
 
 export async function getPatientMsg(body: any) {
-  console.log('触发获取病人信息111', body);
   return request(`${SERVICEURL}/api/v1/patient`, {
     method: 'GET',
     param: body,
@@ -43,7 +43,7 @@ export async function getMainDoctorMsgByPatientId(body: any) {
   console.log('触发获取主治医生信息', body);
   return request(`${SERVICEURL}/api/v1/maindoctor`, {
     method: 'GET',
-    body,
+    params: body,
     // headers: {
     //   token: localStorage.getItem('token'),
     // },

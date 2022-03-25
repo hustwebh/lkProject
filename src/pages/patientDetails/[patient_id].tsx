@@ -83,7 +83,6 @@ const CTMsgList = (props: any) => {
   const { PatientCTMsg } = props;
   const [currPage, setCurrPage] = useState(1);
 
-  console.log('PatientCTMsg', PatientCTMsg);
   return (
     <div
       style={{
@@ -144,7 +143,6 @@ const CTMsgList = (props: any) => {
 
 const BasicMsgList = (props: any) => {
   const { PatientBasicMsg } = props;
-  console.log('PatientBasicMsg', PatientBasicMsg);
   const actionRef = useRef();
   return (
     <ProDescriptions
