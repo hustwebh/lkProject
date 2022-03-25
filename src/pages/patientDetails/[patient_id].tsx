@@ -235,6 +235,11 @@ const patientDetails = (props: any) => {
   } = props;
   const { query } = location;
 
+  const [activeTab, setActiveTab] = useState('BasicMessage');
+  const [patientBasicMsg, setPatientBasicMsg] = useState(PatientBasicMsg);
+  const [patientTreatment, setPatientTreatment] = useState(PatientTreatment);
+  const [patientCTMsg, setPatientCTMsg] = useState(PatientCTMsg);
+
   useEffect(() => {
     dispatch({
       type: 'PatientMsg/BasicMsg',
@@ -250,16 +255,16 @@ const patientDetails = (props: any) => {
     });
     return () => {
       setPatientBasicMsg({});
+      setPatientTreatment({});
+      setPatientCTMsg({});
     };
   }, [1]);
 
   useEffect(() => {
     setPatientBasicMsg(PatientBasicMsg);
-  }, [PatientBasicMsg]);
-
-  const [patientBasicMsg, setPatientBasicMsg] = useState(PatientBasicMsg);
-
-  const [activeTab, setActiveTab] = useState('BasicMessage');
+    setPatientTreatment(PatientTreatment);
+    setPatientCTMsg(PatientCTMsg);
+  }, [PatientBasicMsg, PatientCTMsg, PatientCTMsg]);
 
   const tabList = [
     {

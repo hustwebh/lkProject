@@ -62,6 +62,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
   const { pathname, query } = location;
   const [loading, setLoading] = useState(false);
+  const [sideMsg, setSideMsg] = useState({});
 
   const tmpuuid = 'bfd34afd-f97a9f7c-c0551428-93a0c48a-0285c8ce';
   useEffect(() => {
@@ -84,6 +85,9 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
     return () => {};
   }, [pathname]);
 
+  useEffect(() => {
+    setSideMsg(siderMsg);
+  }, [siderMsg]);
   // useEffect(() => {
   //   if (sound_list) {
   //     console.log('sound_list', sound_list);
@@ -511,7 +515,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
         <Layout style={{ backgroundColor: '#343434' }}>
           <Sider className="side" width={350}>
-            <PeopleMsg siderMsg={siderMsg} />
+            <PeopleMsg siderMsg={sideMsg} />
           </Sider>
           <Content className="main-content">{props.children}</Content>
         </Layout>
