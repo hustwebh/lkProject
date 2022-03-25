@@ -60,23 +60,6 @@ const Model: SiderMsgType = {
         });
         // return true;
       }
-      // const data = {
-      //   "authorize_code": null,
-      //   "create_time": "2022-03-05 21:14:13",
-      //   "email": "1324598012@qq.com",
-      //   "gender": "男",
-      //   "hospital_name": "湖北省第三人民医院",
-      //   "id_card": "412826199608185215",
-      //   "medical_user_id": 1,
-      //   "name": "张华",
-      //   "phone": "13866666666",
-      //   "role_id": 1,
-      //   "role_name": "医生"
-      // };
-      // yield put({
-      //   type: 'saveSiderMsg',
-      //   payload: data,
-      // });
     },
     *hospitalList({ payload }, { call, put }) {
       const { code, data } = yield call(getHospitalList, payload);

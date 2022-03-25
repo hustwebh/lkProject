@@ -1,9 +1,3 @@
-/*
- * @Author: Meng Tian
- * @Date: 2022-03-05 11:13:10
- * @Descripttion: Do not edit
- */
-// export default connect(mapStateToProps)(BasicLayouts)
 import React, { useState, useEffect } from 'react';
 import './BasicLayouts.css';
 import {
