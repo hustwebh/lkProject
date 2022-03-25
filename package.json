@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@ant-design/pro-card": "^1.18.37",
+    "@ant-design/pro-descriptions": "^1.10.58",
     "@ant-design/pro-layout": "^6.5.0",
     "@ant-design/pro-list": "^1.21.44",
     "@ant-design/pro-table": "^2.66.4",
