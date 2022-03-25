@@ -137,22 +137,24 @@ const Index = (props: any) => {
       className="ant-advanced-search-form"
       onFinish={onFinish}
     >
-      <Row gutter={12}>{getFields()}</Row>
-      <Row>
-        <Col span={24} style={{ textAlign: 'right' }}>
-          <Button type="primary" htmlType="submit">
-            Search
-          </Button>
-          <Button
-            style={{ margin: '0 8px' }}
-            onClick={() => {
-              form.resetFields();
-            }}
-          >
-            Clear
-          </Button>
-        </Col>
-      </Row>
+      <div style={{ padding: '30px' }}>
+        <Row gutter={12}>{getFields()}</Row>
+        <Row>
+          <Col span={24} style={{ textAlign: 'right' }}>
+            <Button type="primary" htmlType="submit">
+              Search
+            </Button>
+            <Button
+              style={{ margin: '0 8px' }}
+              onClick={() => {
+                form.resetFields();
+              }}
+            >
+              Clear
+            </Button>
+          </Col>
+        </Row>
+      </div>
     </Form>
   );
 };

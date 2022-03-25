@@ -23,7 +23,7 @@ export async function getPatientMsg(body: any) {
   console.log('触发获取病人信息111', body);
   return request(`${SERVICEURL}/api/v1/patient`, {
     method: 'GET',
-    param: body,
+    params: body,
     // headers: {
     //   token: localStorage.getItem('token'),
     // },
@@ -43,7 +43,7 @@ export async function getMainDoctorMsgByPatientId(body: any) {
   console.log('触发获取主治医生信息', body);
   return request(`${SERVICEURL}/api/v1/maindoctor`, {
     method: 'GET',
-    body,
+    params: body,
     // headers: {
     //   token: localStorage.getItem('token'),
     // },

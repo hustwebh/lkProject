@@ -144,7 +144,7 @@ const CTMsgList = (props: any) => {
 
 const BasicMsgList = (props: any) => {
   const { PatientBasicMsg } = props;
-  console.log('PatientBasicMsg', PatientBasicMsg);
+  // console.log('PatientBasicMsg', PatientBasicMsg);
   const actionRef = useRef();
   return (
     <ProDescriptions
