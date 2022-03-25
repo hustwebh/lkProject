@@ -18,7 +18,7 @@ export async function PreProcess(body: any) {
 }
 export async function getSegResult(body: any) {
   console.log('body', body);
-  return request(`${API_LK_URL}/getSegResult?UUID=${body.uuid}`, {
+  return request(`${SERVICEURL}/api/v1/seg?uuid=${body.uuid}`, {
     method: 'get',
     // data: {
     //   UUID: body.uuid,
@@ -28,29 +28,30 @@ export async function getSegResult(body: any) {
 
 export async function changeNetArch(body: any) {
   console.log('body', body);
-  return request(`${API_LK_URL}/changeNetArch`, {
+  return request(`${SERVICEURL}/api/v1/net`, {
     method: 'put',
-    data: {
+    params: {
       name: body.name,
     },
   });
 }
 
 export async function getNetInfo(body: any) {
-  return request(`${API_LK_URL}/info`, {
+  return request(`${SERVICEURL}/api/v1/net`, {
     method: 'get',
   });
 }
 
 export async function saveResult(body: any) {
-  return request(`${API_LK_URL}/saveResult`, {
+  return request(`${SERVICEURL}/api/v1/save`, {
     method: 'post',
-    data: { UUID: body.uuid },
+    data: { uuid: body.uuid },
+    requestType: 'form',
   });
 }
 
 export async function getAvgHU(body: any) {
-  return request(`${API_LK_URL}/getAvgHU`, {
+  return request(`${SERVICEURL}/api/v1/cthu`, {
     method: 'get',
   });
 }

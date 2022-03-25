@@ -82,7 +82,7 @@ const Model: ModelType = {
   effects: {
     *preProcess({ payload }, { call, put }) {
       // 当前 Instances 渲染左侧侧边栏
-      const data = yield call(PreProcess, payload);
+      const { code, data } = yield call(PreProcess, payload);
       console.log('model', data);
       yield put({
         type: 'save',
@@ -91,8 +91,8 @@ const Model: ModelType = {
     },
     *getSegResult({ payload }, { call, put }) {
       // 当前 Instances 渲染左侧侧边栏
-      const data = yield call(getSegResult, payload);
-      console.log('model', data);
+      const { code, data } = yield call(getSegResult, payload);
+      console.log('获取分割结果：', data);
       yield put({
         type: 'save',
         payload: { ...data, refresh: true },
@@ -100,24 +100,23 @@ const Model: ModelType = {
     },
     *changeNetArch({ payload }, { call, put }) {
       // 当前 Instances 渲染左侧侧边栏
+      console.log('改变网络结构请求参数', payload);
       const data = yield call(changeNetArch, payload);
-      console.log('model', data);
       if (data) {
         message.success('切换成功');
       }
     },
     *getNetInfo({ payload }, { call, put }) {
       // 当前 Instances 渲染左侧侧边栏
-      const data = yield call(getNetInfo, payload);
-      console.log('data', data);
+      const { code, data } = yield call(getNetInfo, payload);
       yield put({
         type: 'save',
         payload: { net_info: data ? data : '' },
       });
     },
     *saveResult({ payload }, { call, put }) {
+      console.log('保存分割结果的参数：', payload);
       const data = yield call(saveResult, payload);
-      console.log('data', data);
       if (data) {
         message.success('保存成功');
         yield put({
@@ -127,7 +126,7 @@ const Model: ModelType = {
       }
     },
     *getAvgHU({ payload }, { call, put }) {
-      const data = yield call(getAvgHU, payload);
+      const { code, data } = yield call(getAvgHU, payload);
       console.log('data', data);
       if (data) {
         message.success('获取成功');
@@ -147,6 +146,7 @@ const Model: ModelType = {
      * @param {*} param2
      */
     save(state, { payload }) {
+      console.log('存储信息*********', payload);
       return { ...state, ...payload };
     },
   },
