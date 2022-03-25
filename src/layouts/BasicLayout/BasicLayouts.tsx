@@ -1,9 +1,3 @@
-/*
- * @Author: Meng Tian
- * @Date: 2022-03-05 11:13:10
- * @Descripttion: Do not edit
- */
-// export default connect(mapStateToProps)(BasicLayouts)
 import React, { useState, useEffect } from 'react';
 import './BasicLayouts.css';
 import {
@@ -71,6 +65,8 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
   const tmpuuid = 'bfd34afd-f97a9f7c-c0551428-93a0c48a-0285c8ce';
   useEffect(() => {
+    console.log('query', query);
+
     if (pathname !== '/patientDetails') {
       //不是在病人详情界面
       dispatch({

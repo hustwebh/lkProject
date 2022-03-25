@@ -43,15 +43,21 @@ const Model: SiderMsgType = {
     },
     *mainDoctorMsg({ payload }, { call, put }) {
       const result = yield call(getPatientMsg, payload);
-      const { code, data } = yield call(getMainDoctorMsg, {
-        doctor_id: result.data.doctor_id,
-      });
-      if (code === 200) {
-        yield put({
-          type: 'saveSiderMsg',
-          payload: data,
+      if (result.code === 200) {
+        console.log('result', result);
+
+        const { code, data } = yield call(getMainDoctorMsg, {
+          doctor_id: result.data.doctor_id,
         });
-        return true;
+        if (code === 200) {
+          yield put({
+            type: 'saveSiderMsg',
+            payload: data,
+          });
+          return true;
+        }
+      } else {
+        return false;
       }
       // const data = {
       //   "authorize_code": null,

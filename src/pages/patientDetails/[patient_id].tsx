@@ -280,8 +280,8 @@ const patientDetails = (props: any) => {
       type: 'PatientMsg/CTMsg',
       payload: query,
     });
-    setTimeout(() => console.log(props), 2000);
-    console.log(props);
+    // setTimeout(() => console.log(props), 2000);
+    // console.log(props);
   }, []);
 
   return (
