@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Divider, Avatar, Image } from 'antd';
 import Doctorlogo from '@/assets/doctor.png';
 import Nurselogo from '@/assets/nurse.png';
+import Adminlogo from '@/assets/admin.png';
 import MalePatient from '@/assets/man.png';
 import FamalePatient from '@/assets/woman.png';
 import './index.css';
@@ -30,8 +31,10 @@ const PeopleMsg = (props: any) => {
       {siderMsg.role_id ? (
         siderMsg.role_id === 1 ? (
           <Avatar size={75} src={Doctorlogo} className="SiderAvatar" />
-        ) : (
+        ) : siderMsg.role_id === 2 ? (
           <Avatar size={75} src={Nurselogo} className="SiderAvatar" />
+        ) : (
+          <Avatar size={75} src={Adminlogo} className="SiderAvatar" />
         )
       ) : null}
       {siderMsg.patient_id ? (
