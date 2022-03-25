@@ -4,11 +4,12 @@
  * @Description: Do not edit
  */
 // import requestNoAuth from '@/utils/requestNoAuth';
-import request from 'umi-request';
+import request from '@/utils/request';
+import { SERVICEURL } from '@/utils/const';
 // 样例:修改样本入组时间
 export async function PreProcess(body: any) {
-  console.log('body', body);
-  return request(`${API_LK_URL}/preHandleCt?UUID=${body.uuid}`, {
+  console.log('preProcess body', body);
+  return request(`${SERVICEURL}/api/v1/processCT?uuid=${body.uuid}`, {
     method: 'get',
     // data: {
     //   UUID: body.uuid,

@@ -318,7 +318,7 @@ const Detect: React.FC<DeteceProps> = (props) => {
                 src={
                   process_img
                     ? process_img
-                    : `${DICOM_URL}/instances/${uuid}/preview`
+                    : `${DICOM_URL}/kidney_seg_result/origin_png/${uuid}.dcm.png`
                 }
                 height={200}
               />
