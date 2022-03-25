@@ -34,13 +34,13 @@ const PeopleMsg = (props: any) => {
           <Avatar size={75} src={Nurselogo} className="SiderAvatar" />
         )
       ) : null}
-      {siderMsg.patient_id ? (
+      {/* {siderMsg.patient_id ? (
         siderMsg.gender === '男' ? (
           <Avatar size={75} src={MalePatient} className="SiderAvatar" />
         ) : (
           <Avatar size={75} src={FamalePatient} className="SiderAvatar" />
         )
-      ) : null}
+      ) : null} */}
       <Divider />
       <p className="msgShow">
         <span>姓名:</span>

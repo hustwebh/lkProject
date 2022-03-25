@@ -81,7 +81,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
       // });
     } else {
       dispatch({
-        type: 'SiderMsg/patientMsg',
+        type: 'SiderMsg/mainDoctorMsg',
         payload: query,
       });
     }

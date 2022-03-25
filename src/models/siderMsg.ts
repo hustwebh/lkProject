@@ -2,6 +2,7 @@ import {
   getLoginUserMsg,
   getHospitalList,
   getPatientMsg,
+  getMainDoctorMsg,
 } from '@/layouts/BasicLayout/service';
 import { message } from 'antd';
 import { Reducer, Effect } from 'umi';
@@ -15,7 +16,7 @@ interface SiderMsgType {
   effects: {
     loginUserMsg: Effect;
     hospitalList: Effect;
-    patientMsg: Effect;
+    mainDoctorMsg: Effect;
   };
   reducers: {
     saveSiderMsg: Reducer;
@@ -40,13 +41,17 @@ const Model: SiderMsgType = {
         });
       }
     },
-    *patientMsg({ payload }, { call, put }) {
-      const { code, data } = yield call(getPatientMsg, payload);
+    *mainDoctorMsg({ payload }, { call, put }) {
+      const result = yield call(getPatientMsg, payload);
+      const { code, data } = yield call(getMainDoctorMsg, {
+        doctor_id: result.data.doctor_id,
+      });
       if (code === 200) {
         yield put({
           type: 'saveSiderMsg',
           payload: data,
         });
+        return true;
       }
       // const data = {
       //   "authorize_code": null,

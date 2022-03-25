@@ -28,3 +28,11 @@ export async function getPatientMsg(body: any) {
     },
   });
 }
+export async function getMainDoctorMsg(body: any) {
+  return request(`${SERVICEURL}/api/v1/user/${body.doctor_id}`, {
+    method: 'GET',
+    headers: {
+      token: localStorage.getItem('token'),
+    },
+  });
+}

@@ -171,7 +171,6 @@ const BasicMsgList = (props: any) => {
           dataIndex: 'address',
           copyable: true,
           span: 2,
-          // ellipsis: true,
           editable: false,
         },
         {
