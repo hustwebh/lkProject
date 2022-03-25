@@ -144,19 +144,14 @@ const CTMsgList = (props: any) => {
 
 const BasicMsgList = (props: any) => {
   const { PatientBasicMsg } = props;
-  // console.log('PatientBasicMsg', PatientBasicMsg);
+  console.log('PatientBasicMsg', PatientBasicMsg);
   const actionRef = useRef();
   return (
     <ProDescriptions
       actionRef={actionRef}
       title="病人基本信息"
       column={2}
-      request={async () => {
-        return Promise.resolve({
-          success: true,
-          data: PatientBasicMsg,
-        });
-      }}
+      dataSource={PatientBasicMsg}
       editable={{}}
       columns={[
         {
@@ -240,6 +235,30 @@ const patientDetails = (props: any) => {
   } = props;
   const { query } = location;
 
+  useEffect(() => {
+    dispatch({
+      type: 'PatientMsg/BasicMsg',
+      payload: query,
+    });
+    dispatch({
+      type: 'PatientMsg/TreatmentMsg',
+      payload: query,
+    });
+    dispatch({
+      type: 'PatientMsg/CTMsg',
+      payload: query,
+    });
+    return () => {
+      setPatientBasicMsg({});
+    };
+  }, [1]);
+
+  useEffect(() => {
+    setPatientBasicMsg(PatientBasicMsg);
+  }, [PatientBasicMsg]);
+
+  const [patientBasicMsg, setPatientBasicMsg] = useState(PatientBasicMsg);
+
   const [activeTab, setActiveTab] = useState('BasicMessage');
 
   const tabList = [
@@ -258,7 +277,7 @@ const patientDetails = (props: any) => {
   ];
 
   const contentList: any = {
-    BasicMessage: <BasicMsgList PatientBasicMsg={PatientBasicMsg} />,
+    BasicMessage: <BasicMsgList PatientBasicMsg={patientBasicMsg} />,
     TreatmantMessage: <TreatmentMsgList PatientTreatment={PatientTreatment} />,
     CTImages: <CTMsgList PatientCTMsg={PatientCTMsg}></CTMsgList>,
   };
@@ -266,23 +285,6 @@ const patientDetails = (props: any) => {
   const onTabChange = (key: string) => {
     setActiveTab(key);
   };
-
-  useEffect(() => {
-    dispatch({
-      type: 'PatientMsg/BasicMsg',
-      payload: query,
-    });
-    dispatch({
-      type: 'PatientMsg/TreatmentMsg',
-      payload: query,
-    });
-    dispatch({
-      type: 'PatientMsg/CTMsg',
-      payload: query,
-    });
-    // setTimeout(() => console.log(props), 2000);
-    // console.log(props);
-  }, []);
 
   return (
     <Card
