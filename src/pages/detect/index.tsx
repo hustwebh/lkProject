@@ -78,17 +78,17 @@ type DeteceProps = {
 const Detect: React.FC<DeteceProps> = (props) => {
   const {
     dispatch,
-    curPatientInfo,
-    curStudyInfo,
-    curSeriesInfo,
-    curInstances,
-    curHeaderKey,
-    curHeaderValue,
-    curDicomtagKey,
-    // curDicomtagValue,
-    mainDicomKey,
-    mainDicomValue,
-    fetchSeriesLoading,
+    // curPatientInfo,
+    // curStudyInfo,
+    // curSeriesInfo,
+    // curInstances,
+    // curHeaderKey,
+    // curHeaderValue,
+    // curDicomtagKey,
+    // // curDicomtagValue,
+    // mainDicomKey,
+    // mainDicomValue,
+    // fetchSeriesLoading,
     mask,
     mask_cover,
     process_img,
@@ -233,7 +233,7 @@ const Detect: React.FC<DeteceProps> = (props) => {
               headStyle={{ backgroundColor: '#39bbdb' }}
               size="small"
             >
-              <p className={style.custom_p} style={{ marginTop: 8 }}>
+              {/* <p className={style.custom_p} style={{ marginTop: 8 }}>
                 序列: {curInstances?.IndexInSeries}
               </p>
               <p className={style.custom_p}>
@@ -246,7 +246,7 @@ const Detect: React.FC<DeteceProps> = (props) => {
               </p>
               <p className={style.custom_p}>
                 SOPInstanceUID: {curInstances?.MainDicomTags.SOPInstanceUID}
-              </p>
+              </p> */}
             </Card>
 
             <Card
@@ -260,7 +260,7 @@ const Detect: React.FC<DeteceProps> = (props) => {
               headStyle={{ backgroundColor: '#39bbdb' }}
               size="small"
             >
-              <p
+              {/* <p
                 className={style.custom_p}
                 style={{ fontSize: '16px', fontWeight: 'bold' }}
               >
@@ -275,7 +275,7 @@ const Detect: React.FC<DeteceProps> = (props) => {
               </p>
               <p className={style.custom_p}>
                 PatientSex: {curPatientInfo?.MainDicomTags.PatientSex}
-              </p>
+              </p> */}
             </Card>
 
             {/* <Card title="操作" headStyle={{ backgroundColor: '#39bbdb' }} size="small">
@@ -498,20 +498,20 @@ const mapStateToProps = ({
   detect: any;
 }) => {
   return {
-    fetchSeriesLoading: loading.effects['Orthanc_instances/fetchInstance'],
-    curDicom: Orthanc_instances.curDicom,
-    curPatientInfo: Orthanc_instances.curPatientInfo,
-    curStudyInfo: Orthanc_instances.curStudyInfo,
-    curSeriesInfo: Orthanc_instances.curSeriesInfo,
-    curInstances: Orthanc_instances.curInstances,
-    curHeaderKey: Orthanc_instances.curHeaderKey,
-    curHeaderValue: Orthanc_instances.curHeaderValue,
-    curDicomtags: Orthanc_instances.curDicomtags,
-    curDicomtagKey: Orthanc_instances.curDicomtagKey,
-    curDicomtagValue: Orthanc_instances.curDicomtagValue,
-    mainDicomKey: Orthanc_instances.mainDicomKey,
-    mainDicomValue: Orthanc_instances.mainDicomValue,
-    parentSeriesId: Orthanc_instances.parentSeriesId,
+    // fetchSeriesLoading: loading.effects['Orthanc_instances/fetchInstance'],
+    // curDicom: Orthanc_instances.curDicom,
+    // curPatientInfo: Orthanc_instances.curPatientInfo,
+    // curStudyInfo: Orthanc_instances.curStudyInfo,
+    // curSeriesInfo: Orthanc_instances.curSeriesInfo,
+    // curInstances: Orthanc_instances.curInstances,
+    // curHeaderKey: Orthanc_instances.curHeaderKey,
+    // curHeaderValue: Orthanc_instances.curHeaderValue,
+    // curDicomtags: Orthanc_instances.curDicomtags,
+    // curDicomtagKey: Orthanc_instances.curDicomtagKey,
+    // curDicomtagValue: Orthanc_instances.curDicomtagValue,
+    // mainDicomKey: Orthanc_instances.mainDicomKey,
+    // mainDicomValue: Orthanc_instances.mainDicomValue,
+    // parentSeriesId: Orthanc_instances.parentSeriesId,
     mask: detect.mask,
     mask_cover: detect.mask_cover,
     process_img: detect.process_img,
