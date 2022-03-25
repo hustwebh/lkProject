@@ -71,8 +71,13 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
   const tmpuuid = 'bfd34afd-f97a9f7c-c0551428-93a0c48a-0285c8ce';
   useEffect(() => {
+    console.log('pathname: ', pathname);
+    console.log('props: ', props);
+    console.log('query: ', query);
+
     if (pathname !== '/patientDetails') {
       //不是在病人详情界面
+      console.log('dispatch用户');
       dispatch({
         type: 'SiderMsg/loginUserMsg',
       });
@@ -80,6 +85,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
       //   type: 'SiderMsg/hospitalList',
       // });
     } else {
+      console.log('dispatch主治医生');
       dispatch({
         type: 'SiderMsg/mainDoctorMsg',
         payload: query,

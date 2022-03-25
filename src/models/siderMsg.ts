@@ -3,6 +3,7 @@ import {
   getHospitalList,
   getPatientMsg,
   getMainDoctorMsg,
+  getMainDoctorMsgByPatientId,
 } from '@/layouts/BasicLayout/service';
 import { message } from 'antd';
 import { Reducer, Effect } from 'umi';
@@ -33,6 +34,7 @@ const Model: SiderMsgType = {
 
   effects: {
     *loginUserMsg({ payload }, { call, put }) {
+      console.log('请求登录用户信息Model');
       const { code, data } = yield call(getLoginUserMsg, payload);
       if (code === 200) {
         yield put({
@@ -42,16 +44,21 @@ const Model: SiderMsgType = {
       }
     },
     *mainDoctorMsg({ payload }, { call, put }) {
-      const result = yield call(getPatientMsg, payload);
-      const { code, data } = yield call(getMainDoctorMsg, {
-        doctor_id: result.data.doctor_id,
-      });
+      console.log('请求主治医生信息Model');
+      const { code, data } = yield call(getMainDoctorMsgByPatientId, payload);
+      // const result = yield call(getPatientMsg, payload);
+
+      // console.log('111111111111111', result);
+
+      // const { code, data } = yield call(getMainDoctorMsg, {
+      //   doctor_id: result.data.doctor_id,
+      // });
       if (code === 200) {
         yield put({
           type: 'saveSiderMsg',
           payload: data,
         });
-        return true;
+        // return true;
       }
       // const data = {
       //   "authorize_code": null,

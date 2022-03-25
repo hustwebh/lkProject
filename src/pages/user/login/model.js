@@ -33,12 +33,12 @@ const Model = {
   effects: {
     *login({ payload }, { call, put }) {
       const { data, code } = yield call(Login, payload);
-      console.log('back data', data);
+      // console.log('back data', data);
       if (code === 200) {
-        console.log('token', data);
+        // console.log('token', data);
         localStorage.setItem('token', data.token);
         localStorage.setItem('roles', data.role_id);
-        console.log('localStorage.token', localStorage.getItem('roles'));
+        // console.log('localStorage.token', localStorage.getItem('roles'));
         if (data) {
           return true;
         } else {

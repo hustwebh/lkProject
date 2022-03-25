@@ -23,7 +23,7 @@ const Model: PatientMsgType = {
 
   effects: {
     *TreatmentMsg({ payload }, { call, put }) {
-      console.log('2. 请求诊疗信息！');
+      // console.log('2. 请求诊疗信息！');
       const { code, data } = yield call(getTreatmentMsg, payload);
       if (code === 200) {
         yield put({
@@ -58,7 +58,7 @@ const Model: PatientMsgType = {
       // return true;
     },
     *BasicMsg({ payload }, { call, put }) {
-      console.log('1. 请求基本信息！');
+      // console.log('1. 请求基本信息！');
       const { code, data } = yield call(getBasicMsg, payload);
       if (code === 200) {
         yield put({
@@ -68,7 +68,7 @@ const Model: PatientMsgType = {
       }
     },
     *CTMsg({ payload }, { call, put }) {
-      console.log('3. 请求CT图片信息！');
+      // console.log('3. 请求CT图片信息！');
 
       const { code, data } = yield call(getCTMsg, payload);
       // console.log(code, data);
