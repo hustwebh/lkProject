@@ -58,7 +58,9 @@ const Model: SiderMsgType = {
     },
     *PatientMsg({ payload }, { call, put }) {
       console.log('请求病人信息参数', payload);
-      const { code, data } = yield call(getPatientMsg, payload);
+      const { code, data } = yield call(getPatientMsg, {
+        patient_id: payload.patient_id,
+      });
       if (code === 200) {
         yield put({
           type: 'saveSiderMsg',
