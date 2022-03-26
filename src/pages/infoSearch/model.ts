@@ -19,12 +19,14 @@ const Model: ModelType = {
   effects: {
     *getSearchList({ payload }, { call, put }) {
       // 当前 Instances 渲染左侧侧边栏
-      const data = yield call(Search, payload);
+      const { code, data } = yield call(Search, payload);
       console.log('searchData', data);
-      yield put({
-        type: 'save',
-        payload: { searchList: data.data },
-      });
+      if (code === 200) {
+        yield put({
+          type: 'save',
+          payload: { searchList: data },
+        });
+      }
     },
   },
 
@@ -32,7 +34,10 @@ const Model: ModelType = {
     save(state, { payload }) {
       console.log('payload', payload);
 
-      return { ...state, ...payload };
+      return {
+        ...state,
+        searchList: payload,
+      };
     },
   },
 };

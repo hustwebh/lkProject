@@ -145,7 +145,6 @@ const Index = (props: any) => {
 
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
-    // console.log('hhhhhhhhhhh', inputRef.current);
     dispatch({
       type: 'searchInfo/getSearchList',
       payload: values,
@@ -197,8 +196,8 @@ const Index = (props: any) => {
     </div>
   );
 };
-const mapStateToProps = ({ searchList }: { searchList: any }) => {
-  // console.log('state', state);
+const mapStateToProps = ({ searchInfo }: { searchInfo: any }) => {
+  const { searchList } = searchInfo;
   return { searchList };
 };
 export default connect(mapStateToProps)(Index);
