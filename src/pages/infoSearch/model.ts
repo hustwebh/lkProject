@@ -19,7 +19,6 @@ const Model: ModelType = {
   effects: {
     *getSearchList({ payload }, { call, put }) {
       // 当前 Instances 渲染左侧侧边栏
-      console.log('11111111111111111111111', payload);
       const data = yield call(Search, payload);
       console.log('searchData', data);
       yield put({
@@ -31,6 +30,8 @@ const Model: ModelType = {
 
   reducers: {
     save(state, { payload }) {
+      console.log('payload', payload);
+
       return { ...state, ...payload };
     },
   },

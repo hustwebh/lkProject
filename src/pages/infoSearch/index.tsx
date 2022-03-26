@@ -24,15 +24,39 @@
 //   );
 // };
 // export default Index;
-import React, { useState, useEffect } from 'react';
-import { Form, Row, Col, Input, Button, Select } from 'antd';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  Form,
+  Row,
+  Col,
+  Input,
+  Button,
+  Select,
+  List,
+  message,
+  Avatar,
+} from 'antd';
+import VirtualList from 'rc-virtual-list';
 import { connect } from 'umi';
 
 const { Option } = Select;
+const ContainerHeight = 400;
 
 const Index = (props: any) => {
   const [form] = Form.useForm();
-  const { dispatch } = props;
+  const { dispatch, searchList } = props;
+
+  console.log('searchList', searchList);
+  const d = [
+    { name: 'name', value: 1 },
+    { name: 'name', value: 1 },
+    { name: 'name', value: 1 },
+    { name: 'name', value: 1 },
+  ];
+
+  useEffect(() => {
+    console.log('useEffect', searchList);
+  }, [searchList]);
 
   const getFields = () => {
     const children = [];
@@ -121,41 +145,56 @@ const Index = (props: any) => {
 
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
+    // console.log('hhhhhhhhhhh', inputRef.current);
     dispatch({
       type: 'searchInfo/getSearchList',
       payload: values,
     });
-    setTimeout(() => {
-      console.log('接收到的返回信息： ', props.searchList);
-    }, 1000);
   };
 
   return (
-    <Form
-      form={form}
-      name="advanced_search"
-      className="ant-advanced-search-form"
-      onFinish={onFinish}
-    >
-      <div style={{ padding: '30px' }}>
-        <Row gutter={12}>{getFields()}</Row>
-        <Row>
-          <Col span={24} style={{ textAlign: 'right' }}>
-            <Button type="primary" htmlType="submit">
-              Search
-            </Button>
-            <Button
-              style={{ margin: '0 8px' }}
-              onClick={() => {
-                form.resetFields();
-              }}
-            >
-              Clear
-            </Button>
-          </Col>
-        </Row>
+    <div>
+      <Form
+        form={form}
+        name="advanced_search"
+        className="ant-advanced-search-form"
+        onFinish={onFinish}
+      >
+        <div style={{ padding: '30px' }}>
+          <Row gutter={12}>{getFields()}</Row>
+          <Row>
+            <Col span={24} style={{ textAlign: 'right' }}>
+              <Button type="primary" htmlType="submit">
+                Search
+              </Button>
+              <Button
+                style={{ margin: '0 8px' }}
+                onClick={() => {
+                  form.resetFields();
+                }}
+              >
+                Clear
+              </Button>
+            </Col>
+          </Row>
+        </div>
+      </Form>
+      <div>
+        <List
+          itemLayout="horizontal"
+          dataSource={searchList}
+          renderItem={(item) => (
+            <List.Item>
+              <List.Item.Meta
+                avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+                title={<a href="https://ant.design">{item.name}</a>}
+                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+              />
+            </List.Item>
+          )}
+        />
       </div>
-    </Form>
+    </div>
   );
 };
 const mapStateToProps = ({ searchList }: { searchList: any }) => {
