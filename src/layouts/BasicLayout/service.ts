@@ -2,7 +2,7 @@ import request from '@/utils/request';
 import { SERVICEURL } from '@/utils/const';
 
 export async function getLoginUserMsg() {
-  console.log('向后端发起登陆用户请求');
+  // console.log('向后端发起登陆用户请求');
   return request(`${SERVICEURL}/api/v1/user`, {
     method: 'GET',
     // headers: {

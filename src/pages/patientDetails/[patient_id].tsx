@@ -164,7 +164,7 @@ const BasicMsgList = (props: any) => {
           dataIndex: 'address',
           copyable: true,
           span: 2,
-          editable: false,
+          // editable: true,
         },
         {
           title: '联系电话',
@@ -177,14 +177,14 @@ const BasicMsgList = (props: any) => {
           title: '身份证帐号',
           key: 'id_card',
           dataIndex: 'id_card',
-          editable: false,
+          // editable: false,
           copyable: true,
         },
         {
           title: '性别',
           key: 'gender',
           dataIndex: 'gender',
-          editable: false,
+          // editable: false,
         },
         {
           title: '手术史情况',

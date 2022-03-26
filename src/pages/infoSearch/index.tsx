@@ -35,28 +35,26 @@ import {
   List,
   message,
   Avatar,
+  Pagination,
 } from 'antd';
 import VirtualList from 'rc-virtual-list';
-import { connect } from 'umi';
+import { connect, Link } from 'umi';
+import './index.less';
+import Doctorlogo from '@/assets/doctor.png';
+import Nurselogo from '@/assets/nurse.png';
+import Adminlogo from '@/assets/admin.png';
+import MalePatient from '@/assets/man.png';
+import FamalePatient from '@/assets/woman.png';
 
 const { Option } = Select;
 const ContainerHeight = 400;
 
 const Index = (props: any) => {
+  const PAGE_SIZE = 8;
   const [form] = Form.useForm();
   const { dispatch, searchList } = props;
 
-  console.log('searchList', searchList);
-  const d = [
-    { name: 'name', value: 1 },
-    { name: 'name', value: 1 },
-    { name: 'name', value: 1 },
-    { name: 'name', value: 1 },
-  ];
-
-  useEffect(() => {
-    console.log('useEffect', searchList);
-  }, [searchList]);
+  const [currPage, setCurrPage] = useState(1);
 
   const getFields = () => {
     const children = [];
@@ -144,7 +142,6 @@ const Index = (props: any) => {
   };
 
   const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
     dispatch({
       type: 'searchInfo/getSearchList',
       payload: values,
@@ -153,44 +150,71 @@ const Index = (props: any) => {
 
   return (
     <div>
-      <Form
-        form={form}
-        name="advanced_search"
-        className="ant-advanced-search-form"
-        onFinish={onFinish}
-      >
-        <div style={{ padding: '30px' }}>
-          <Row gutter={12}>{getFields()}</Row>
-          <Row>
-            <Col span={24} style={{ textAlign: 'right' }}>
-              <Button type="primary" htmlType="submit">
-                Search
-              </Button>
-              <Button
-                style={{ margin: '0 8px' }}
-                onClick={() => {
-                  form.resetFields();
-                }}
-              >
-                Clear
-              </Button>
-            </Col>
-          </Row>
-        </div>
-      </Form>
-      <div>
+      <div className={'inputContent'}>
+        <Form
+          form={form}
+          name="advanced_search"
+          className="ant-advanced-search-form"
+          onFinish={onFinish}
+        >
+          <div style={{ padding: '30px' }}>
+            <Row gutter={12}>{getFields()}</Row>
+            <Row>
+              <Col span={24} style={{ textAlign: 'right' }}>
+                <Button type="primary" htmlType="submit">
+                  Search
+                </Button>
+                <Button
+                  style={{ margin: '0 8px' }}
+                  onClick={() => {
+                    form.resetFields();
+                  }}
+                >
+                  Clear
+                </Button>
+              </Col>
+            </Row>
+          </div>
+        </Form>
+      </div>
+      <div className={'searchResult'}>
         <List
           itemLayout="horizontal"
-          dataSource={searchList}
+          dataSource={
+            searchList
+              ? searchList.slice(
+                  PAGE_SIZE * (currPage - 1),
+                  PAGE_SIZE * currPage,
+                )
+              : []
+          }
           renderItem={(item) => (
             <List.Item>
               <List.Item.Meta
-                avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                title={<a href="https://ant.design">{item.name}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                avatar={
+                  item.gender === '男' ? (
+                    <Avatar size={55} src={MalePatient} />
+                  ) : (
+                    <Avatar size={55} src={FamalePatient} />
+                  )
+                }
+                title={
+                  <Link to={`/patientDetails?patient_id=${item.patient_id}`}>
+                    {item.name}
+                  </Link>
+                }
+                description={'手机号码：' + item.phone}
               />
             </List.Item>
           )}
+          style={{ padding: '20px', margin: '20px' }}
+        />{' '}
+        <Pagination
+          current={currPage}
+          onChange={(e) => setCurrPage(e)}
+          total={searchList ? searchList.length : 1}
+          pageSize={PAGE_SIZE}
+          style={{ textAlign: 'center' }}
         />
       </div>
     </div>

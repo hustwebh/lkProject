@@ -9,7 +9,7 @@ import './index.css';
 
 const PeopleMsg = (props: any) => {
   const { siderMsg, hospitalList } = props;
-  console.log('组件siderMsg', siderMsg);
+  // console.log('组件siderMsg', siderMsg);
 
   // console.log('hospitalList', hospitalList);
   // const { role_id } = siderMsg;
