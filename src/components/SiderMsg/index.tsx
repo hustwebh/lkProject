@@ -22,7 +22,6 @@ const PeopleMsg = (props: any) => {
   const { siderMsg, hospitalList } = props;
   // const [listKeys, setListKeys] = useState<string[]>([]);
   // const [listValues, setlistValues] = useState<any>({});
-
   const { name, gender, phone, email, hospital_name, address, id_card, age } =
     siderMsg;
   const roles = ['医生', '护士', '管理员'];

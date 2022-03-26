@@ -66,22 +66,19 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
   const tmpuuid = 'bfd34afd-f97a9f7c-c0551428-93a0c48a-0285c8ce';
   useEffect(() => {
-    console.log('pathname', pathname);
-
-    if (pathname === '/patientDetails') {
+    if (['/patientDetails'].indexOf(pathname) !== -1) {
       console.log('dispatch主治医生');
       dispatch({
         type: 'SiderMsg/mainDoctorMsg',
         payload: query,
       });
-    } else if (['/detect'].indexOf(pathname) != -1) {
+    } else if (['/segInfo', '/detect'].indexOf(pathname) !== -1) {
       console.log('dispatch病人信息');
       dispatch({
         type: 'SiderMsg/PatientMsg',
         payload: query,
       });
     } else {
-      //不是在病人详情界面
       console.log('dispatch用户');
       dispatch({
         type: 'SiderMsg/loginUserMsg',
