@@ -94,7 +94,7 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
       // });
     }
     return () => {};
-  }, [pathname]);
+  }, [location]);
 
   // 顶部菜单
   const TopMenu = () => {
