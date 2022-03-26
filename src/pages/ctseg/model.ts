@@ -40,11 +40,11 @@ const Model: ModelType = {
   effects: {
     *getPatientList({ payload }, { call, put }) {
       // 当前 Instances 渲染左侧侧边栏
-      const data = yield call(GetPatientList, payload);
+      const { code, data } = yield call(GetPatientList, payload);
       console.log('model', data);
       yield put({
         type: 'save',
-        payload: { patientsList: data.data },
+        payload: { patientsList: data },
       });
     },
     *getCtUrl({ payload }, { call, put }) {

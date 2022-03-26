@@ -28,6 +28,8 @@ const PAGE_SIZE = 8;
 
 type CTInfoProps = {
   dispatch: Dispatch;
+  // location: Location;
+  ctInfo?: any;
 };
 
 const CTSeg: React.FC<CTInfoProps> = (props) => {
