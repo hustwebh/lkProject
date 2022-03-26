@@ -36,7 +36,7 @@ const Model: ModelType = {
 
       return {
         ...state,
-        searchList: payload,
+        ...payload,
       };
     },
   },

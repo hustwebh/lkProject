@@ -71,6 +71,12 @@ const Model: PatientMsgType = {
       };
     },
     saveBasicMsg(state, { payload }) {
+      console.log('payload', payload);
+
+      payload.married === 0
+        ? (payload.married = '未婚')
+        : (payload.married = '已婚');
+
       return {
         ...state,
         PatientBasicMsg: payload,
