@@ -23,7 +23,6 @@ import style from './index.less';
 import { history } from 'umi';
 import { PreProcess } from '@/pages/detect/service';
 import TextArea from 'antd/es/input/TextArea';
-import Patient_id from '../patientDetails/[patient_id]';
 
 const PAGE_SIZE = 8;
 
@@ -32,11 +31,10 @@ type CTInfoProps = {
 };
 
 const CTInfo: React.FC<CTInfoProps> = (props) => {
-  const { dispatch, ctInfo, location } = props;
+  const { dispatch, ctInfo } = props;
   const [visible, setVisible] = useState(true);
   const [patientVal, setpatientVal] = useState(undefined);
   const [currPage, setCurrPage] = useState(1);
-  console.log(location);
 
   // const handleOk = () => {
   //   setVisible(false);
@@ -73,8 +71,7 @@ const CTInfo: React.FC<CTInfoProps> = (props) => {
             <Button
               onClick={() => {
                 setVisible(false);
-                patient_id = record.patient_id;
-                // console.log('patient_id', record.patient_id);
+                console.log('patient_id', record.patient_id);
                 history.push(`/ctInfo?patient_id=${record.patient_id}`);
                 dispatch({
                   type: 'ctInfo/getCtUrl',
@@ -152,7 +149,7 @@ const CTInfo: React.FC<CTInfoProps> = (props) => {
                               // src={`${DICOM_URL}/instances/${item.ID}/preview`}
                               src={item}
                               onClick={() => {
-                                // history.push(`/detect?patient_id=${}&uuid=${item.ID}`);
+                                history.push(`/detect?uuid=${item.ID}`);
                               }}
                             />
                           </div>

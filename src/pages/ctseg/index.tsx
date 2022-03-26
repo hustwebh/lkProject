@@ -31,10 +31,17 @@ type CTInfoProps = {
 };
 
 const CTSeg: React.FC<CTInfoProps> = (props) => {
-  const { dispatch, ctInfo } = props;
+  const { dispatch, ctInfo, location } = props;
   const [visible, setVisible] = useState(true);
   const [patientVal, setpatientVal] = useState(undefined);
   const [currPage, setCurrPage] = useState(1);
+
+  let patient_id = '';
+
+  console.log(location);
+  useEffect(() => {
+    patient_id = location.query.patient_id;
+  }, [location]);
 
   // const handleOk = () => {
   //   setVisible(false);
@@ -71,7 +78,8 @@ const CTSeg: React.FC<CTInfoProps> = (props) => {
             <Button
               onClick={() => {
                 setVisible(false);
-                console.log('patient_id', record.patient_id);
+                // console.log('patient_id', record.patient_id);
+                history.push(`/segInfo?patient_id=${record.patient_id}`);
                 dispatch({
                   type: 'ctInfo/getCtUrl',
                   payload: { patient_id: record.patient_id },
@@ -152,7 +160,9 @@ const CTSeg: React.FC<CTInfoProps> = (props) => {
                                 const tempArr = item.split('/');
                                 const uuid =
                                   tempArr[tempArr.length - 1].split('.')[0];
-                                history.push(`/detect?uuid=${uuid}`);
+                                history.push(
+                                  `/detect?patient_id=${patient_id}&uuid=${uuid}`,
+                                );
                               }}
                             />
                           </div>
