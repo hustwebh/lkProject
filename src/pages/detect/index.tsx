@@ -98,6 +98,10 @@ const Detect: React.FC<DeteceProps> = (props) => {
     avg,
     medium,
   } = props;
+
+  const searchParams = new URLSearchParams(props.location.search);
+  console.log('uuid', searchParams.get('uuid'));
+  console.log('patient_id', searchParams.get('patient_id'));
   console.log('mask', mask);
   console.log('mask_cover', mask_cover);
   console.log('process_img', process_img);
@@ -105,7 +109,8 @@ const Detect: React.FC<DeteceProps> = (props) => {
   console.log('medium', medium);
 
   const [random, setRandom] = useState<number>();
-  const uuid = getUUID();
+  // const uuid = getUUID();
+  const uuid = searchParams.get('uuid');
 
   const [curNet, setcurNet] = useState('');
   const [preMask, setPreMask] = useState(
