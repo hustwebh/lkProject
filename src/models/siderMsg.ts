@@ -1,6 +1,7 @@
 import {
   getLoginUserMsg,
   getHospitalList,
+  getPatientMsg,
   getMainDoctorMsgByPatientId,
 } from '@/layouts/BasicLayout/service';
 import { message } from 'antd';
@@ -16,6 +17,7 @@ interface SiderMsgType {
     loginUserMsg: Effect;
     hospitalList: Effect;
     mainDoctorMsg: Effect;
+    PatientMsg: Effect;
   };
   reducers: {
     saveSiderMsg: Reducer;
@@ -47,6 +49,17 @@ const Model: SiderMsgType = {
       if (code === 200) {
         console.log('doctorMsg', data);
 
+        yield put({
+          type: 'saveSiderMsg',
+          payload: data,
+        });
+        return true;
+      }
+    },
+    *PatientMsg({ payload }, { call, put }) {
+      console.log('请求病人信息参数', payload);
+      const { code, data } = yield call(getPatientMsg, payload);
+      if (code === 200) {
         yield put({
           type: 'saveSiderMsg',
           payload: data,
