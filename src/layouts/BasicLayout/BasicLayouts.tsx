@@ -42,6 +42,7 @@ import topLogo from '@/assets/favicon.png';
 import moment from 'moment';
 import PeopleMsg from '@/components/SiderMsg';
 import { SERVICEURL } from '@/utils/const';
+import { DICOM_URL } from '@/utils/const';
 
 const { Header, Sider, Footer, Content } = Layout;
 
@@ -62,6 +63,8 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
   console.log('siderMsg', siderMsg);
   const { pathname, query } = location;
   const [loading, setLoading] = useState(false);
+  console.log('query', query);
+
   // const [sideMsg, setSideMsg] = useState({});
 
   const tmpuuid = 'bfd34afd-f97a9f7c-c0551428-93a0c48a-0285c8ce';
@@ -70,7 +73,6 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
       ['/patientDetails'].indexOf(pathname) !== -1 &&
       Object.keys(query).length
     ) {
-      console.log('dispatch主治医生');
       dispatch({
         type: 'SiderMsg/mainDoctorMsg',
         payload: query,
@@ -79,13 +81,11 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
       ['/segInfo', '/detect'].indexOf(pathname) !== -1 &&
       Object.keys(query).length
     ) {
-      console.log('dispatch病人信息');
       dispatch({
         type: 'SiderMsg/PatientMsg',
         payload: query,
       });
     } else {
-      console.log('dispatch用户');
       dispatch({
         type: 'SiderMsg/loginUserMsg',
       });
@@ -203,6 +203,60 @@ const BasicLayouts: React.FC<BasicLayoutsContentProps> = (props: any) => {
 
         <Layout style={{ backgroundColor: '#343434' }}>
           <Sider className="side" width={350}>
+            {pathname === '/detect' ? (
+              <div>
+                <div
+                  style={{
+                    paddingRight:
+                      '12px' /* , display: 'inline-block', width: '800px' */,
+                  }}
+                >
+                  <Card
+                    //   style={{ width: '300px', display: 'inline-block' }}
+                    title={
+                      <>
+                        <p style={{ color: 'white' }}>原图</p>
+                      </>
+                    }
+                    bodyStyle={{ padding: '12px' }}
+                    headStyle={{ backgroundColor: '#39bbdb' }}
+                    size="small"
+                  >
+                    {
+                      // https://guli-miler.oss-cn-beijing.aliyuncs.com/kidney_seg_result/origin_png/7b23b6ca3e64400b91f825d94ed9f34f.dcm.png
+                    }
+                    <Image
+                      src={`${DICOM_URL}/kidney_seg_result/origin_png/${query.uuid}.dcm.png`}
+                    />
+                  </Card>
+                  {/* <Card
+                        //   style={{ width: '300px', display: 'inline-block' }}
+                        title={
+                          <>
+                            <p style={{ color: 'white' }}>序列信息</p>
+                          </>
+                        }
+                        bodyStyle={{ padding: '12px' }}
+                        headStyle={{ backgroundColor: '#39bbdb' }}
+                        size="small"
+                      >
+
+                      </Card>
+
+                      <Card
+                        title={
+                          <>
+                            <p style={{ color: 'white' }}>病人信息</p>
+                          </>
+                        }
+                        bodyStyle={{ padding: '12px' }}
+                        headStyle={{ backgroundColor: '#39bbdb' }}
+                        size="small"
+                      >
+                      </Card> */}
+                </div>
+              </div>
+            ) : null}
             <PeopleMsg siderMsg={siderMsg} />
           </Sider>
           <Content className="main-content">{props.children}</Content>

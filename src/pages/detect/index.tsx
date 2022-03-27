@@ -31,10 +31,11 @@ import style from './index.less';
 import { history } from 'umi';
 import { PreProcess } from '@/pages/detect/service';
 import TextArea from 'antd/es/input/TextArea';
+import { DICOM_URL } from '@/utils/const';
 
 const { Sider, Content } = Layout;
 
-const DICOM_URL = 'https://guli-miler.oss-cn-beijing.aliyuncs.com';
+// const DICOM_URL = 'https://guli-miler.oss-cn-beijing.aliyuncs.com';
 // Hook
 function usePrevious(value) {
   // The ref object is a generic container whose current property is mutable ...
@@ -202,93 +203,6 @@ const Detect: React.FC<DeteceProps> = (props) => {
   return (
     <>
       <Layout style={{ margin: '15px' }}>
-        <Sider theme="light" width="20%">
-          <div
-            style={{
-              paddingRight:
-                '12px' /* , display: 'inline-block', width: '800px' */,
-            }}
-          >
-            <Card
-              //   style={{ width: '300px', display: 'inline-block' }}
-              title={
-                <>
-                  <p style={{ color: 'white' }}>原图</p>
-                </>
-              }
-              bodyStyle={{ padding: '12px' }}
-              headStyle={{ backgroundColor: '#39bbdb' }}
-              size="small"
-            >
-              {
-                // https://guli-miler.oss-cn-beijing.aliyuncs.com/kidney_seg_result/origin_png/7b23b6ca3e64400b91f825d94ed9f34f.dcm.png
-              }
-              <Image
-                src={`${DICOM_URL}/kidney_seg_result/origin_png/${uuid}.dcm.png`}
-              />
-            </Card>
-            <Card
-              //   style={{ width: '300px', display: 'inline-block' }}
-              title={
-                <>
-                  <p style={{ color: 'white' }}>序列信息</p>
-                </>
-              }
-              bodyStyle={{ padding: '12px' }}
-              headStyle={{ backgroundColor: '#39bbdb' }}
-              size="small"
-            >
-              {/* <p className={style.custom_p} style={{ marginTop: 8 }}>
-                序列: {curInstances?.IndexInSeries}
-              </p>
-              <p className={style.custom_p}>
-                ImageOrientationPatient:{' '}
-                {curInstances?.MainDicomTags.ImageOrientationPatient}
-              </p>
-              <p className={style.custom_p}>
-                ImagePositionPatient:{' '}
-                {curInstances?.MainDicomTags.ImagePositionPatient}
-              </p>
-              <p className={style.custom_p}>
-                SOPInstanceUID: {curInstances?.MainDicomTags.SOPInstanceUID}
-              </p> */}
-            </Card>
-
-            <Card
-              //   style={{ width: '300px', display: 'inline-block' }}
-              title={
-                <>
-                  <p style={{ color: 'white' }}>病人信息</p>
-                </>
-              }
-              bodyStyle={{ padding: '12px' }}
-              headStyle={{ backgroundColor: '#39bbdb' }}
-              size="small"
-            >
-              {/* <p
-                className={style.custom_p}
-                style={{ fontSize: '16px', fontWeight: 'bold' }}
-              >
-                {curPatientInfo?.MainDicomTags.PatientName}
-              </p>
-              <p className={style.custom_p}>
-                PatientBirthDate:{' '}
-                {curPatientInfo?.MainDicomTags.PatientBirthDate}
-              </p>
-              <p className={style.custom_p}>
-                PatientID: {curPatientInfo?.MainDicomTags.PatientID}
-              </p>
-              <p className={style.custom_p}>
-                PatientSex: {curPatientInfo?.MainDicomTags.PatientSex}
-              </p> */}
-            </Card>
-
-            {/* <Card title="操作" headStyle={{ backgroundColor: '#39bbdb' }} size="small">
-
-            </Card> */}
-          </div>
-        </Sider>
-
         <Layout>
           <Content
             style={{ background: 'white' }}

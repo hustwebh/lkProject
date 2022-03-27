@@ -1,5 +1,5 @@
 .side {
-  background-color: #eaeaeb;
+  background-color: #eaeaeb !important;
   left: 0;
   height: calc(100vh - 64px);
   /* overflow: outo; */
@@ -18,9 +18,12 @@
   height: calc(100% - 64px);
   /* background-color: blue; */
   margin-top: 16px;
-  background-color: #2D2D2D;
+  /* background-color: #2D2D2D; */
 }
 
+.ant-card-bordered {
+  border: none !important;
+}
 
 .site-tree-search-value {
   color: #f50;
